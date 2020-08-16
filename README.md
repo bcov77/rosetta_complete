@@ -15,11 +15,34 @@ This github repo contains "rosetta_complete.py" which compiles the Ros language 
 
 To execute a compiled xml, the following command will work where pdb.pdb is any pdb.
 
-`rosetta_scripts -s pdb.pdb -parser:protocol compiled.xml | grep Applying`
+```bash
+rosetta_scripts -s pdb.pdb -parser:protocol compiled.xml | grep Applying
+```
 
 Often one may want to pass the output through sed to make it easier to read. The command may buffer at this point and so sed outputs often look like this: (this converts all I to " ")
 
-`stdbuf -o0 rosetta_scripts -s pdb.pdb -parser:protocol compiled.xml | stdbuf -o0 -i0 grep Applying | stdbuf -i0 -o0 sed 's/I/ /g'`
+```bash
+stdbuf -o0 rosetta_scripts -s pdb.pdb -parser:protocol compiled.xml | stdbuf -o0 -i0 grep Applying | stdbuf -i0 -o0 sed 's/I/ /g'
+```
+
+
+## Example code:
+
+`prime_numbers.ros`, `tunnel.ros`, and `tetris.ros` provide pretty good overviews of the Ros language. `tetris.ros` was the holy grail to really prove the turing completeness of the language.
+
+Only tetris accepts key inputs. Running `tetris.ros` in one terminal and `./keyinput.py '<left><up><right><down>/'` in another will give you control. Use the arrow keys and / to control the pieces.
+
+`tetris.xml` uses this command to run:
+
+```bash
+stdbuf -o0 rosetta_scripts -overwrite -s test.pdb -mute all -unmute protocols.rosetta_scripts.MultiplePoseMover -parser:protocol tetris.xml | stdbuf -o1880 -i0 grep --color=never Applying | stdbuf -o0 -i0 sed -e 's/I/ /g' -e 's/[VYTW]/▓/g'
+```
+
+The others work well with this command:
+
+``` bash
+stdbuf -o0 rosetta_scripts -overwrite -s test.pdb -mute all -unmute protocols.rosetta_scripts.MultiplePoseMover -parser:protocol tunnel.xml | stdbuf -o0 grep Applying | stdbuf -o0 -i0 sed -e 's/I/ /g' -e 's/W/▓/g'
+```
 
 
 ## Ros language documentation:
@@ -227,26 +250,6 @@ In order to make printing faster, it's possible to cache the `buf[]` buffer such
 An important caveat here is that the buffer used for caching is not directly tied to the underlying pose. Therefore, if one calls the builtin `load()`, the buffer will go stale.
 
 If one wishes to use `load()` with `$BUF_CACHING 1`, the best option is ensure that writes to `buf[]` always go to the original buffer. (i.e. if you call `load()` on something that is out of sync with `buf[]`, be sure to `load()` the thing that's in-sync with `buf[]` before you actually store to `buf[]`)
-
-
-## Example code:
-
-`prime_numbers.ros`, `tunnel.ros`, and `tetris.ros` provide pretty good overviews of the Ros language. `tetris.ros` was the holy grail to really prove the turing completeness of the language.
-
-Only tetris accepts key inputs. Running `tetris.ros` in one terminal and `./keyinput.py '<left><up><right><down>/'` in another will give you control. Use the arrow keys and / to control the pieces.
-
-`tetris.xml` uses this command to run:
-
-```bash
-stdbuf -o0 rosetta_scripts -overwrite -s test.pdb -mute all -unmute protocols.rosetta_scripts.MultiplePoseMover -parser:protocol tetris.xml | stdbuf -o1880 -i0 grep --color=never Applying | stdbuf -o0 -i0 sed -e 's/I/ /g' -e 's/[VYTW]/▓/g'
-```
-
-The others work well with this command:
-
-``` bash
-stdbuf -o0 rosetta_scripts -overwrite -s test.pdb -mute all -unmute protocols.rosetta_scripts.MultiplePoseMover -parser:protocol tunnel.xml | stdbuf -o0 grep Applying | stdbuf -o0 -i0 sed -e 's/I/ /g' -e 's/W/▓/g'
-```
-
 
 
 ## Actual XML implementation:
