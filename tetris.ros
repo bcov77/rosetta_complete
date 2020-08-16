@@ -1768,8 +1768,8 @@ def write_shape_20(x, y, val):
     ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
     ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
     ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
-    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
-    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-9+@__script__disp_start] = val
     ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
 def check_shape_20(x, y):
     to_ret = 'aaI'
@@ -1784,7 +1784,7 @@ def check_shape_20(x, y):
             return 'aaY'
         if ( val == 'aaW'):
             to_ret = 'aaW'
-    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
     val = ram[off]
     if ( val == 'aaI' ):
         pass
@@ -1795,7 +1795,7 @@ def check_shape_20(x, y):
             return 'aaY'
         if ( val == 'aaW'):
             to_ret = 'aaW'
-    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    off = (y+0)*@__script__width_p1+x+-9+@__script__disp_start
     val = ram[off]
     if ( val == 'aaI' ):
         pass

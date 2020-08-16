@@ -18,6 +18,16 @@ def getch():
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
+def write_profile(counts):
+    with open("tmp", "w") as f:
+        f.write("aa A C D E F G H I K L M N P Q R S T V W Y\n")
+        for count in counts:
+            f.write("A %i"%count + " 0"*19 + "\n")
+    os.rename("tmp", "keyinput.profile")
+
+
+write_profile(counts)
+
 buf = []
 while True:
     key = getch()
@@ -39,12 +49,8 @@ while True:
 
     print(counts)
 
-    with open("tmp", "w") as f:
-        f.write("aa A C D E F G H I K L M N P Q R S T V W Y\n")
-        for count in counts:
-            f.write("A %i"%count + " 0"*19 + "\n")
-    os.rename("tmp", "keyinput.profile")
 
+    write_profile(counts)
 
 
 
