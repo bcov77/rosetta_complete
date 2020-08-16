@@ -1,0 +1,148 @@
+
+<ROSETTASCRIPTS>
+
+<SCOREFXNS>
+    <ScoreFunction name="sfxn_none" weights="none" />
+    <ScoreFunction name="sfxn_keyinput" weights="none" >
+        <Reweight scoretype="res_type_constraint" weight="1.0" />
+    </ScoreFunction>
+</SCOREFXNS>
+
+<RESIDUE_SELECTORS>
+
+    <True name="true" />
+
+    <ResiduePDBInfoHasLabel name="mut_A" property="MUT_A" />
+    <ResiduePDBInfoHasLabel name="mut_C" property="MUT_C" />
+    <ResiduePDBInfoHasLabel name="mut_D" property="MUT_D" />
+    <ResiduePDBInfoHasLabel name="mut_E" property="MUT_E" />
+    <ResiduePDBInfoHasLabel name="mut_F" property="MUT_F" />
+    <ResiduePDBInfoHasLabel name="mut_G" property="MUT_G" />
+    <ResiduePDBInfoHasLabel name="mut_H" property="MUT_H" />
+    <ResiduePDBInfoHasLabel name="mut_I" property="MUT_I" />
+    <ResiduePDBInfoHasLabel name="mut_K" property="MUT_K" />
+    <ResiduePDBInfoHasLabel name="mut_L" property="MUT_L" />
+    <ResiduePDBInfoHasLabel name="mut_M" property="MUT_M" />
+    <ResiduePDBInfoHasLabel name="mut_N" property="MUT_N" />
+    <ResiduePDBInfoHasLabel name="mut_P" property="MUT_P" />
+    <ResiduePDBInfoHasLabel name="mut_Q" property="MUT_Q" />
+    <ResiduePDBInfoHasLabel name="mut_R" property="MUT_R" />
+    <ResiduePDBInfoHasLabel name="mut_S" property="MUT_S" />
+    <ResiduePDBInfoHasLabel name="mut_T" property="MUT_T" />
+    <ResiduePDBInfoHasLabel name="mut_V" property="MUT_V" />
+    <ResiduePDBInfoHasLabel name="mut_W" property="MUT_W" />
+    <ResiduePDBInfoHasLabel name="mut_Y" property="MUT_Y" />
+
+    <Or name="mutation_res" selectors="mut_A,mut_C,mut_D,mut_E,mut_F,mut_G,mut_H,mut_I,mut_K,mut_L,mut_M,mut_N,mut_P,mut_Q,mut_R,mut_S,mut_T,mut_V,mut_W,mut_Y" />
+
+    <Not name="not_mutation_res" selector="mutation_res" />
+
+    <ResiduePDBInfoHasLabel name="MARK" property="MARK" />
+
+    <Not name="all_but_1" >
+        <Index resnums="1" />
+    </Not>
+
+</RESIDUE_SELECTORS>
+
+<TASKOPERATIONS>        
+    <OperateOnResidueSubset name="restrict_not_mutation_res" selector="not_mutation_res">
+        <PreventRepackingRLT/>
+    </OperateOnResidueSubset>
+
+    <OperateOnResidueSubset name="to_A" selector="mut_A">
+        <RestrictAbsentCanonicalAASRLT aas="A"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_C" selector="mut_C">
+        <RestrictAbsentCanonicalAASRLT aas="C"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_D" selector="mut_D">
+        <RestrictAbsentCanonicalAASRLT aas="D"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_E" selector="mut_E">
+        <RestrictAbsentCanonicalAASRLT aas="E"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_F" selector="mut_F">
+        <RestrictAbsentCanonicalAASRLT aas="F"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_G" selector="mut_G">
+        <RestrictAbsentCanonicalAASRLT aas="G"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_H" selector="mut_H">
+        <RestrictAbsentCanonicalAASRLT aas="H"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_I" selector="mut_I">
+        <RestrictAbsentCanonicalAASRLT aas="I"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_K" selector="mut_K">
+        <RestrictAbsentCanonicalAASRLT aas="K"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_L" selector="mut_L">
+        <RestrictAbsentCanonicalAASRLT aas="L"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_M" selector="mut_M">
+        <RestrictAbsentCanonicalAASRLT aas="M"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_N" selector="mut_N">
+        <RestrictAbsentCanonicalAASRLT aas="N"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_P" selector="mut_P">
+        <RestrictAbsentCanonicalAASRLT aas="P"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_Q" selector="mut_Q">
+        <RestrictAbsentCanonicalAASRLT aas="Q"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_R" selector="mut_R">
+        <RestrictAbsentCanonicalAASRLT aas="R"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_S" selector="mut_S">
+        <RestrictAbsentCanonicalAASRLT aas="S"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_T" selector="mut_T">
+        <RestrictAbsentCanonicalAASRLT aas="T"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_V" selector="mut_V">
+        <RestrictAbsentCanonicalAASRLT aas="V"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_W" selector="mut_W">
+        <RestrictAbsentCanonicalAASRLT aas="W"/>
+    </OperateOnResidueSubset>
+    <OperateOnResidueSubset name="to_Y" selector="mut_Y">
+        <RestrictAbsentCanonicalAASRLT aas="Y"/>
+    </OperateOnResidueSubset>
+
+</TASKOPERATIONS>
+
+<MOVERS>
+    <PackRotamersMover name="mut_pack" scorefxn="sfxn_none" task_operations="restrict_not_mutation_res,to_A,to_C,to_D,to_E,to_F,to_G,to_H,to_I,to_K,to_L,to_M,to_N,to_P,to_Q,to_R,to_S,to_T,to_V,to_W,to_Y"/>
+
+    <DeleteRegionMover name="delete_all_but_1" residue_selector="all_but_1" />
+    <SwitchResidueTypeSetMover name="to_centroid" set="centroid"/>
+
+    <ModifyVariantType name="drop_terms" remove_type="LOWER_TERMINUS_VARIANT,UPPER_TERMINUS_VARIANT" residue_selector="true"  />
+
+    RunSimpleMetrics name="print" override="true" >
+        SequenceMetric residue_selector="true" />
+    /RunSimpleMetrics>
+    
+    <MultiplePoseMover name="inner_print" cached="true" max_input_poses="1" />
+
+    <MakePolyX name="polyA" aa="ALA" keep_pro="0"  keep_gly="0" keep_disulfide_cys="0" />
+
+    # if only this didn't cache...
+    ConstraintSetMover name="load_keyinput" add_constraints="true" cst_file="keyinput.MSAcst"/>
+
+    <StoreResidueSubset name="_null" subset_name="_null" residue_selector="" overwrite="1" />
+
+    <ClearConstraintsMover name="clear_constraints" />
+
+
+</MOVERS>
+
+<FILTERS>
+    <FalseFilter name="fifty_fifty" confidence="0.5" />
+</FILTERS>
+
+
+
+</ROSETTASCRIPTS>

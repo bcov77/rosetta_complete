@@ -1,0 +1,207 @@
+
+
+$BUFSIZE 50
+$MAXINT 128
+$RANDMAX 15
+$AVAIL_CHARS Tunelbycov0123456789Sr:
+
+x_max = 49
+
+def delay():
+    j = 0
+    while:
+        j = j + 1
+        if ( j == 10 ):
+            break
+
+def fill_line(aa):
+    i = 0
+    while:
+        buf[i] = aa
+        i = i + 1
+        if ( i == 50 ):
+            break
+
+fill_line('aaW')
+
+i = 0
+while:
+    print()
+    delay()
+    i = i + 1
+    if ( i == 10 ):
+        break
+
+
+
+print()
+
+big_clear()
+o = 13
+o = big_print('T', o)
+o = big_print('u', o)
+o = big_print('n', o)
+o = big_print('n', o)
+o = big_print('e', o)
+o = big_print('l', o)
+big_display()
+
+fill_line('aaI')
+print()
+big_clear()
+o = 22
+o = big_print('b', o)
+o = big_print('y', o)
+
+big_display()
+
+fill_line('aaI')
+print()
+
+big_clear()
+
+o = 17
+o = big_print('b', o)
+o = big_print('c', o)
+o = big_print('o', o)
+o = big_print('v', o)
+
+big_display()
+
+
+fill_line('aaI')
+print()
+
+fill_line('aaW')
+i = 0
+while:
+    print()
+    delay()
+    i = i + 1
+    if ( i == 10 ):
+        break
+
+# returns position of first char in ram
+def int_to_string(value):
+    i = 0
+    while:
+        ram[i] = 0
+        i = i + 1
+        if ( i == 10 ):
+            break
+
+    work = value
+    i = 8
+    while:
+        div = work / 10
+        mod = work - div * 10
+        ram[i] = mod + '0'
+        work = div
+        if ( work == 0 ):
+            break
+        i = i - 1
+    return i
+
+def print_int(value, off):
+    ram_pos = int_to_string(value)
+
+    while:
+        if ( ram[ram_pos] == 0 ):
+            return off
+        off = big_print(ram[ram_pos], off)
+        ram_pos = ram_pos + 1
+
+
+def draw_line(x, wid, curpos):
+    buf[curpos] = 'aaV'
+    buf[x] = 'aaW'
+    buf[x+wid] = 'aaW'
+
+def reset_line(x, wid, curpos):
+    buf[x] = 'aaI'
+    buf[x+wid] = 'aaI'
+    buf[curpos] = 'aaI'
+
+
+x = 15
+wid = 20
+cur_pos = wid / 2 + x
+
+level = 0
+progress = 0
+
+fill_line('aaI')
+
+
+while:
+
+    progress = progress + 1
+    if ( progress == 10 ):
+        wid = wid - 1
+        progress = 0
+        level = level + 1
+
+    rand_value = rand()
+
+    # 6 smaller, 6 bigger, 4 same
+    if ( rand_value <= 5 ):
+        if ( x + wid < x_max ):
+            x = x + 1
+    else:
+        if ( rand_value <= 11 ):
+            if ( x > 0 ): 
+                x = x - 1
+
+
+
+
+
+    draw_line(x, wid, cur_pos)
+    print()
+    reset_line(x, wid, cur_pos)
+
+    bad = 0
+    if ( cur_pos <= x ):
+        bad = 1
+    if ( cur_pos >= x + wid ):
+        bad = 1
+
+    if ( bad == 1 ):
+        break
+
+
+fill_line('aaI')
+print()
+fill_line('aaW')
+print()
+fill_line('aaI')
+print()
+
+big_clear()
+
+o = 8
+o = big_print('S', o)
+o = big_print('c', o)
+o = big_print('o', o)
+o = big_print('r', o)
+o = big_print('e', o)
+o = big_print(':', o)
+o = o + 3
+o = print_int(level, o)
+o = print_int(progress, o)
+
+big_display()
+
+fill_line('aaI')
+print()
+fill_line('aaW')
+print()
+fill_line('aaI')
+print()
+
+
+
+
+
+
+

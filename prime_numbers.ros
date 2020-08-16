@@ -1,0 +1,100 @@
+
+
+$BUFSIZE 50
+$MAXINT 1023
+$RANDMAX 15
+$AVAIL_CHARS ABCDEF0123456789
+$RAMSIZE 300
+
+
+
+
+# returns position of first char in ram
+def int_to_string(value):
+    i = 0
+    while:
+        ram[i] = 0
+        i = i + 1
+        if ( i == 10 ):
+            break
+
+    work = value
+    i = 8
+    while:
+        div = work / 10
+        mod = work - div * 10
+        ram[i] = mod + '0'
+        work = div
+        if ( work == 0 ):
+            break
+        i = i - 1
+    return i
+
+def print_int(value, off):
+    ram_pos = int_to_string(value)
+
+    while:
+        if ( ram[ram_pos] == 0 ):
+            return off
+        off = big_print(ram[ram_pos], off)
+        ram_pos = ram_pos + 1
+
+def fill_line(aa):
+    i = 0
+    while:
+        buf[i] = aa
+        i = i + 1
+        if ( i == 50 ):
+            break
+
+
+# i = 0
+# while:
+#     ram[i] = 0
+#     i = i + 1
+#     if ( i >= 150 ):
+#         break
+
+
+num_primes = 0
+ram_off = 12
+
+i = 2
+while:
+
+    is_prime = 1
+    j = 0
+    while:
+        if ( j == num_primes):
+            break
+
+        prime = ram[ram_off + j ]
+
+
+        div = i / prime
+        recip = div * prime
+
+        if ( recip == i ):
+            is_prime = 0
+            break
+
+        j = j + 1
+
+
+    if ( is_prime == 1 ):
+        ram[num_primes + ram_off] = i
+        num_primes = num_primes + 1
+
+        big_clear()
+        print_int(i, 3)
+        big_display()
+        fill_line('aaI')
+        print()
+
+    i = i + 1
+
+
+
+
+
+

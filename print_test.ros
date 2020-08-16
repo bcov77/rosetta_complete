@@ -1,0 +1,137 @@
+
+
+$BUFSIZE 24
+$MAXINT 127
+$RANDMAX 15
+$AVAIL_CHARS ABCDEF0123456789
+$RAMSIZE 100
+
+
+
+
+# returns position of first char in ram
+def int_to_string(value):
+    i = 0
+    while:
+        ram[i] = 0
+        i = i + 1
+        if ( i == 10 ):
+            break
+
+    work = value
+    i = 8
+    while:
+        div = work / 10
+        mod = work - div * 10
+        ram[i] = mod + '0'
+        work = div
+        if ( work == 0 ):
+            break
+        i = i - 1
+    return i
+
+def print_int(value, off):
+    ram_pos = int_to_string(value)
+
+    while:
+        if ( ram[ram_pos] == 0 ):
+            return off
+        off = big_print(ram[ram_pos], off)
+        ram_pos = ram_pos + 1
+
+def fill_line(aa):
+    i = 0
+    while:
+        buf[i] = aa
+        i = i + 1
+        if ( i == 24 ):
+            break
+
+def delay():
+
+    j = 0
+    while:
+        j = j + 1
+        if ( j == 10 ):
+            break
+        i = 0
+        while:
+            i = i + 1
+            if ( i == 100 ):
+                break
+
+
+fill_line('aaW')
+save("full")
+fill_line('aaI')
+buf[0] = 'aaW'
+buf[23] = 'aaW'
+save("wide")
+
+
+
+i = 0
+while:
+    i = i + 1
+    if (i == 10):
+        break
+    load("full")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("wide")
+    print()
+    load("full")
+    print()
+    delay()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

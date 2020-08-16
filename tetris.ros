@@ -1,0 +1,4056 @@
+
+
+$BUFSIZE 24
+$MAXINT 511
+$RANDMAX 63
+$AVAIL_CHARS ABCDEF0123456789
+$RAMSIZE 512
+$NUM_KEYINPUT 5
+$NUM_KEYINPUT_CALLS 4096
+
+disp_start = 10
+width = 24
+height = 20
+
+width_p1 = width + 1
+max_int = 511
+
+# 20 tall, 24 wide, 10 spare, dirty bit
+
+
+
+# returns position of first char in ram
+def int_to_string(value, min_char):
+    i = 0
+    while:
+        ram[i] = 0
+        i = i + 1
+        if ( i == 10 ):
+            break
+
+    work = value
+    i = 8
+    chars = 0
+    while:
+        div = work / 10
+        mod = work - div * 10
+        ram[i] = mod + '0'
+        chars = chars + 1
+        work = div
+        if ( work == 0 ):
+            if ( chars >= min_char ):
+                break
+        i = i - 1
+    return i
+
+def print_int(value, off, min_char):
+    ram_pos = int_to_string(value, min_char)
+
+    while:
+        if ( ram[ram_pos] == 0 ):
+            return off
+        off = big_print(ram[ram_pos], off)
+        ram_pos = ram_pos + 1
+
+def display():
+    save("buf_save")
+    if ( @buf_ram_10 == 1 ):
+        @buf_ram_10 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_11
+        buf[1] = @buf_ram_12
+        buf[2] = @buf_ram_13
+        buf[3] = @buf_ram_14
+        buf[4] = @buf_ram_15
+        buf[5] = @buf_ram_16
+        buf[6] = @buf_ram_17
+        buf[7] = @buf_ram_18
+        buf[8] = @buf_ram_19
+        buf[9] = @buf_ram_20
+        buf[10] = @buf_ram_21
+        buf[11] = @buf_ram_22
+        buf[12] = @buf_ram_23
+        buf[13] = @buf_ram_24
+        buf[14] = @buf_ram_25
+        buf[15] = @buf_ram_26
+        buf[16] = @buf_ram_27
+        buf[17] = @buf_ram_28
+        buf[18] = @buf_ram_29
+        buf[19] = @buf_ram_30
+        buf[20] = @buf_ram_31
+        buf[21] = @buf_ram_32
+        buf[22] = @buf_ram_33
+        buf[23] = @buf_ram_34
+        save("display_0")
+        save("buf_save")
+    if ( @buf_ram_35 == 1 ):
+        @buf_ram_35 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_36
+        buf[1] = @buf_ram_37
+        buf[2] = @buf_ram_38
+        buf[3] = @buf_ram_39
+        buf[4] = @buf_ram_40
+        buf[5] = @buf_ram_41
+        buf[6] = @buf_ram_42
+        buf[7] = @buf_ram_43
+        buf[8] = @buf_ram_44
+        buf[9] = @buf_ram_45
+        buf[10] = @buf_ram_46
+        buf[11] = @buf_ram_47
+        buf[12] = @buf_ram_48
+        buf[13] = @buf_ram_49
+        buf[14] = @buf_ram_50
+        buf[15] = @buf_ram_51
+        buf[16] = @buf_ram_52
+        buf[17] = @buf_ram_53
+        buf[18] = @buf_ram_54
+        buf[19] = @buf_ram_55
+        buf[20] = @buf_ram_56
+        buf[21] = @buf_ram_57
+        buf[22] = @buf_ram_58
+        buf[23] = @buf_ram_59
+        save("display_1")
+        save("buf_save")
+    if ( @buf_ram_60 == 1 ):
+        @buf_ram_60 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_61
+        buf[1] = @buf_ram_62
+        buf[2] = @buf_ram_63
+        buf[3] = @buf_ram_64
+        buf[4] = @buf_ram_65
+        buf[5] = @buf_ram_66
+        buf[6] = @buf_ram_67
+        buf[7] = @buf_ram_68
+        buf[8] = @buf_ram_69
+        buf[9] = @buf_ram_70
+        buf[10] = @buf_ram_71
+        buf[11] = @buf_ram_72
+        buf[12] = @buf_ram_73
+        buf[13] = @buf_ram_74
+        buf[14] = @buf_ram_75
+        buf[15] = @buf_ram_76
+        buf[16] = @buf_ram_77
+        buf[17] = @buf_ram_78
+        buf[18] = @buf_ram_79
+        buf[19] = @buf_ram_80
+        buf[20] = @buf_ram_81
+        buf[21] = @buf_ram_82
+        buf[22] = @buf_ram_83
+        buf[23] = @buf_ram_84
+        save("display_2")
+        save("buf_save")
+    if ( @buf_ram_85 == 1 ):
+        @buf_ram_85 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_86
+        buf[1] = @buf_ram_87
+        buf[2] = @buf_ram_88
+        buf[3] = @buf_ram_89
+        buf[4] = @buf_ram_90
+        buf[5] = @buf_ram_91
+        buf[6] = @buf_ram_92
+        buf[7] = @buf_ram_93
+        buf[8] = @buf_ram_94
+        buf[9] = @buf_ram_95
+        buf[10] = @buf_ram_96
+        buf[11] = @buf_ram_97
+        buf[12] = @buf_ram_98
+        buf[13] = @buf_ram_99
+        buf[14] = @buf_ram_100
+        buf[15] = @buf_ram_101
+        buf[16] = @buf_ram_102
+        buf[17] = @buf_ram_103
+        buf[18] = @buf_ram_104
+        buf[19] = @buf_ram_105
+        buf[20] = @buf_ram_106
+        buf[21] = @buf_ram_107
+        buf[22] = @buf_ram_108
+        buf[23] = @buf_ram_109
+        save("display_3")
+        save("buf_save")
+    if ( @buf_ram_110 == 1 ):
+        @buf_ram_110 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_111
+        buf[1] = @buf_ram_112
+        buf[2] = @buf_ram_113
+        buf[3] = @buf_ram_114
+        buf[4] = @buf_ram_115
+        buf[5] = @buf_ram_116
+        buf[6] = @buf_ram_117
+        buf[7] = @buf_ram_118
+        buf[8] = @buf_ram_119
+        buf[9] = @buf_ram_120
+        buf[10] = @buf_ram_121
+        buf[11] = @buf_ram_122
+        buf[12] = @buf_ram_123
+        buf[13] = @buf_ram_124
+        buf[14] = @buf_ram_125
+        buf[15] = @buf_ram_126
+        buf[16] = @buf_ram_127
+        buf[17] = @buf_ram_128
+        buf[18] = @buf_ram_129
+        buf[19] = @buf_ram_130
+        buf[20] = @buf_ram_131
+        buf[21] = @buf_ram_132
+        buf[22] = @buf_ram_133
+        buf[23] = @buf_ram_134
+        save("display_4")
+        save("buf_save")
+    if ( @buf_ram_135 == 1 ):
+        @buf_ram_135 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_136
+        buf[1] = @buf_ram_137
+        buf[2] = @buf_ram_138
+        buf[3] = @buf_ram_139
+        buf[4] = @buf_ram_140
+        buf[5] = @buf_ram_141
+        buf[6] = @buf_ram_142
+        buf[7] = @buf_ram_143
+        buf[8] = @buf_ram_144
+        buf[9] = @buf_ram_145
+        buf[10] = @buf_ram_146
+        buf[11] = @buf_ram_147
+        buf[12] = @buf_ram_148
+        buf[13] = @buf_ram_149
+        buf[14] = @buf_ram_150
+        buf[15] = @buf_ram_151
+        buf[16] = @buf_ram_152
+        buf[17] = @buf_ram_153
+        buf[18] = @buf_ram_154
+        buf[19] = @buf_ram_155
+        buf[20] = @buf_ram_156
+        buf[21] = @buf_ram_157
+        buf[22] = @buf_ram_158
+        buf[23] = @buf_ram_159
+        save("display_5")
+        save("buf_save")
+    if ( @buf_ram_160 == 1 ):
+        @buf_ram_160 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_161
+        buf[1] = @buf_ram_162
+        buf[2] = @buf_ram_163
+        buf[3] = @buf_ram_164
+        buf[4] = @buf_ram_165
+        buf[5] = @buf_ram_166
+        buf[6] = @buf_ram_167
+        buf[7] = @buf_ram_168
+        buf[8] = @buf_ram_169
+        buf[9] = @buf_ram_170
+        buf[10] = @buf_ram_171
+        buf[11] = @buf_ram_172
+        buf[12] = @buf_ram_173
+        buf[13] = @buf_ram_174
+        buf[14] = @buf_ram_175
+        buf[15] = @buf_ram_176
+        buf[16] = @buf_ram_177
+        buf[17] = @buf_ram_178
+        buf[18] = @buf_ram_179
+        buf[19] = @buf_ram_180
+        buf[20] = @buf_ram_181
+        buf[21] = @buf_ram_182
+        buf[22] = @buf_ram_183
+        buf[23] = @buf_ram_184
+        save("display_6")
+        save("buf_save")
+    if ( @buf_ram_185 == 1 ):
+        @buf_ram_185 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_186
+        buf[1] = @buf_ram_187
+        buf[2] = @buf_ram_188
+        buf[3] = @buf_ram_189
+        buf[4] = @buf_ram_190
+        buf[5] = @buf_ram_191
+        buf[6] = @buf_ram_192
+        buf[7] = @buf_ram_193
+        buf[8] = @buf_ram_194
+        buf[9] = @buf_ram_195
+        buf[10] = @buf_ram_196
+        buf[11] = @buf_ram_197
+        buf[12] = @buf_ram_198
+        buf[13] = @buf_ram_199
+        buf[14] = @buf_ram_200
+        buf[15] = @buf_ram_201
+        buf[16] = @buf_ram_202
+        buf[17] = @buf_ram_203
+        buf[18] = @buf_ram_204
+        buf[19] = @buf_ram_205
+        buf[20] = @buf_ram_206
+        buf[21] = @buf_ram_207
+        buf[22] = @buf_ram_208
+        buf[23] = @buf_ram_209
+        save("display_7")
+        save("buf_save")
+    if ( @buf_ram_210 == 1 ):
+        @buf_ram_210 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_211
+        buf[1] = @buf_ram_212
+        buf[2] = @buf_ram_213
+        buf[3] = @buf_ram_214
+        buf[4] = @buf_ram_215
+        buf[5] = @buf_ram_216
+        buf[6] = @buf_ram_217
+        buf[7] = @buf_ram_218
+        buf[8] = @buf_ram_219
+        buf[9] = @buf_ram_220
+        buf[10] = @buf_ram_221
+        buf[11] = @buf_ram_222
+        buf[12] = @buf_ram_223
+        buf[13] = @buf_ram_224
+        buf[14] = @buf_ram_225
+        buf[15] = @buf_ram_226
+        buf[16] = @buf_ram_227
+        buf[17] = @buf_ram_228
+        buf[18] = @buf_ram_229
+        buf[19] = @buf_ram_230
+        buf[20] = @buf_ram_231
+        buf[21] = @buf_ram_232
+        buf[22] = @buf_ram_233
+        buf[23] = @buf_ram_234
+        save("display_8")
+        save("buf_save")
+    if ( @buf_ram_235 == 1 ):
+        @buf_ram_235 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_236
+        buf[1] = @buf_ram_237
+        buf[2] = @buf_ram_238
+        buf[3] = @buf_ram_239
+        buf[4] = @buf_ram_240
+        buf[5] = @buf_ram_241
+        buf[6] = @buf_ram_242
+        buf[7] = @buf_ram_243
+        buf[8] = @buf_ram_244
+        buf[9] = @buf_ram_245
+        buf[10] = @buf_ram_246
+        buf[11] = @buf_ram_247
+        buf[12] = @buf_ram_248
+        buf[13] = @buf_ram_249
+        buf[14] = @buf_ram_250
+        buf[15] = @buf_ram_251
+        buf[16] = @buf_ram_252
+        buf[17] = @buf_ram_253
+        buf[18] = @buf_ram_254
+        buf[19] = @buf_ram_255
+        buf[20] = @buf_ram_256
+        buf[21] = @buf_ram_257
+        buf[22] = @buf_ram_258
+        buf[23] = @buf_ram_259
+        save("display_9")
+        save("buf_save")
+    if ( @buf_ram_260 == 1 ):
+        @buf_ram_260 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_261
+        buf[1] = @buf_ram_262
+        buf[2] = @buf_ram_263
+        buf[3] = @buf_ram_264
+        buf[4] = @buf_ram_265
+        buf[5] = @buf_ram_266
+        buf[6] = @buf_ram_267
+        buf[7] = @buf_ram_268
+        buf[8] = @buf_ram_269
+        buf[9] = @buf_ram_270
+        buf[10] = @buf_ram_271
+        buf[11] = @buf_ram_272
+        buf[12] = @buf_ram_273
+        buf[13] = @buf_ram_274
+        buf[14] = @buf_ram_275
+        buf[15] = @buf_ram_276
+        buf[16] = @buf_ram_277
+        buf[17] = @buf_ram_278
+        buf[18] = @buf_ram_279
+        buf[19] = @buf_ram_280
+        buf[20] = @buf_ram_281
+        buf[21] = @buf_ram_282
+        buf[22] = @buf_ram_283
+        buf[23] = @buf_ram_284
+        save("display_10")
+        save("buf_save")
+    if ( @buf_ram_285 == 1 ):
+        @buf_ram_285 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_286
+        buf[1] = @buf_ram_287
+        buf[2] = @buf_ram_288
+        buf[3] = @buf_ram_289
+        buf[4] = @buf_ram_290
+        buf[5] = @buf_ram_291
+        buf[6] = @buf_ram_292
+        buf[7] = @buf_ram_293
+        buf[8] = @buf_ram_294
+        buf[9] = @buf_ram_295
+        buf[10] = @buf_ram_296
+        buf[11] = @buf_ram_297
+        buf[12] = @buf_ram_298
+        buf[13] = @buf_ram_299
+        buf[14] = @buf_ram_300
+        buf[15] = @buf_ram_301
+        buf[16] = @buf_ram_302
+        buf[17] = @buf_ram_303
+        buf[18] = @buf_ram_304
+        buf[19] = @buf_ram_305
+        buf[20] = @buf_ram_306
+        buf[21] = @buf_ram_307
+        buf[22] = @buf_ram_308
+        buf[23] = @buf_ram_309
+        save("display_11")
+        save("buf_save")
+    if ( @buf_ram_310 == 1 ):
+        @buf_ram_310 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_311
+        buf[1] = @buf_ram_312
+        buf[2] = @buf_ram_313
+        buf[3] = @buf_ram_314
+        buf[4] = @buf_ram_315
+        buf[5] = @buf_ram_316
+        buf[6] = @buf_ram_317
+        buf[7] = @buf_ram_318
+        buf[8] = @buf_ram_319
+        buf[9] = @buf_ram_320
+        buf[10] = @buf_ram_321
+        buf[11] = @buf_ram_322
+        buf[12] = @buf_ram_323
+        buf[13] = @buf_ram_324
+        buf[14] = @buf_ram_325
+        buf[15] = @buf_ram_326
+        buf[16] = @buf_ram_327
+        buf[17] = @buf_ram_328
+        buf[18] = @buf_ram_329
+        buf[19] = @buf_ram_330
+        buf[20] = @buf_ram_331
+        buf[21] = @buf_ram_332
+        buf[22] = @buf_ram_333
+        buf[23] = @buf_ram_334
+        save("display_12")
+        save("buf_save")
+    if ( @buf_ram_335 == 1 ):
+        @buf_ram_335 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_336
+        buf[1] = @buf_ram_337
+        buf[2] = @buf_ram_338
+        buf[3] = @buf_ram_339
+        buf[4] = @buf_ram_340
+        buf[5] = @buf_ram_341
+        buf[6] = @buf_ram_342
+        buf[7] = @buf_ram_343
+        buf[8] = @buf_ram_344
+        buf[9] = @buf_ram_345
+        buf[10] = @buf_ram_346
+        buf[11] = @buf_ram_347
+        buf[12] = @buf_ram_348
+        buf[13] = @buf_ram_349
+        buf[14] = @buf_ram_350
+        buf[15] = @buf_ram_351
+        buf[16] = @buf_ram_352
+        buf[17] = @buf_ram_353
+        buf[18] = @buf_ram_354
+        buf[19] = @buf_ram_355
+        buf[20] = @buf_ram_356
+        buf[21] = @buf_ram_357
+        buf[22] = @buf_ram_358
+        buf[23] = @buf_ram_359
+        save("display_13")
+        save("buf_save")
+    if ( @buf_ram_360 == 1 ):
+        @buf_ram_360 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_361
+        buf[1] = @buf_ram_362
+        buf[2] = @buf_ram_363
+        buf[3] = @buf_ram_364
+        buf[4] = @buf_ram_365
+        buf[5] = @buf_ram_366
+        buf[6] = @buf_ram_367
+        buf[7] = @buf_ram_368
+        buf[8] = @buf_ram_369
+        buf[9] = @buf_ram_370
+        buf[10] = @buf_ram_371
+        buf[11] = @buf_ram_372
+        buf[12] = @buf_ram_373
+        buf[13] = @buf_ram_374
+        buf[14] = @buf_ram_375
+        buf[15] = @buf_ram_376
+        buf[16] = @buf_ram_377
+        buf[17] = @buf_ram_378
+        buf[18] = @buf_ram_379
+        buf[19] = @buf_ram_380
+        buf[20] = @buf_ram_381
+        buf[21] = @buf_ram_382
+        buf[22] = @buf_ram_383
+        buf[23] = @buf_ram_384
+        save("display_14")
+        save("buf_save")
+    if ( @buf_ram_385 == 1 ):
+        @buf_ram_385 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_386
+        buf[1] = @buf_ram_387
+        buf[2] = @buf_ram_388
+        buf[3] = @buf_ram_389
+        buf[4] = @buf_ram_390
+        buf[5] = @buf_ram_391
+        buf[6] = @buf_ram_392
+        buf[7] = @buf_ram_393
+        buf[8] = @buf_ram_394
+        buf[9] = @buf_ram_395
+        buf[10] = @buf_ram_396
+        buf[11] = @buf_ram_397
+        buf[12] = @buf_ram_398
+        buf[13] = @buf_ram_399
+        buf[14] = @buf_ram_400
+        buf[15] = @buf_ram_401
+        buf[16] = @buf_ram_402
+        buf[17] = @buf_ram_403
+        buf[18] = @buf_ram_404
+        buf[19] = @buf_ram_405
+        buf[20] = @buf_ram_406
+        buf[21] = @buf_ram_407
+        buf[22] = @buf_ram_408
+        buf[23] = @buf_ram_409
+        save("display_15")
+        save("buf_save")
+    if ( @buf_ram_410 == 1 ):
+        @buf_ram_410 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_411
+        buf[1] = @buf_ram_412
+        buf[2] = @buf_ram_413
+        buf[3] = @buf_ram_414
+        buf[4] = @buf_ram_415
+        buf[5] = @buf_ram_416
+        buf[6] = @buf_ram_417
+        buf[7] = @buf_ram_418
+        buf[8] = @buf_ram_419
+        buf[9] = @buf_ram_420
+        buf[10] = @buf_ram_421
+        buf[11] = @buf_ram_422
+        buf[12] = @buf_ram_423
+        buf[13] = @buf_ram_424
+        buf[14] = @buf_ram_425
+        buf[15] = @buf_ram_426
+        buf[16] = @buf_ram_427
+        buf[17] = @buf_ram_428
+        buf[18] = @buf_ram_429
+        buf[19] = @buf_ram_430
+        buf[20] = @buf_ram_431
+        buf[21] = @buf_ram_432
+        buf[22] = @buf_ram_433
+        buf[23] = @buf_ram_434
+        save("display_16")
+        save("buf_save")
+    if ( @buf_ram_435 == 1 ):
+        @buf_ram_435 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_436
+        buf[1] = @buf_ram_437
+        buf[2] = @buf_ram_438
+        buf[3] = @buf_ram_439
+        buf[4] = @buf_ram_440
+        buf[5] = @buf_ram_441
+        buf[6] = @buf_ram_442
+        buf[7] = @buf_ram_443
+        buf[8] = @buf_ram_444
+        buf[9] = @buf_ram_445
+        buf[10] = @buf_ram_446
+        buf[11] = @buf_ram_447
+        buf[12] = @buf_ram_448
+        buf[13] = @buf_ram_449
+        buf[14] = @buf_ram_450
+        buf[15] = @buf_ram_451
+        buf[16] = @buf_ram_452
+        buf[17] = @buf_ram_453
+        buf[18] = @buf_ram_454
+        buf[19] = @buf_ram_455
+        buf[20] = @buf_ram_456
+        buf[21] = @buf_ram_457
+        buf[22] = @buf_ram_458
+        buf[23] = @buf_ram_459
+        save("display_17")
+        save("buf_save")
+    if ( @buf_ram_460 == 1 ):
+        @buf_ram_460 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_461
+        buf[1] = @buf_ram_462
+        buf[2] = @buf_ram_463
+        buf[3] = @buf_ram_464
+        buf[4] = @buf_ram_465
+        buf[5] = @buf_ram_466
+        buf[6] = @buf_ram_467
+        buf[7] = @buf_ram_468
+        buf[8] = @buf_ram_469
+        buf[9] = @buf_ram_470
+        buf[10] = @buf_ram_471
+        buf[11] = @buf_ram_472
+        buf[12] = @buf_ram_473
+        buf[13] = @buf_ram_474
+        buf[14] = @buf_ram_475
+        buf[15] = @buf_ram_476
+        buf[16] = @buf_ram_477
+        buf[17] = @buf_ram_478
+        buf[18] = @buf_ram_479
+        buf[19] = @buf_ram_480
+        buf[20] = @buf_ram_481
+        buf[21] = @buf_ram_482
+        buf[22] = @buf_ram_483
+        buf[23] = @buf_ram_484
+        save("display_18")
+        save("buf_save")
+    if ( @buf_ram_485 == 1 ):
+        @buf_ram_485 = 0
+        load("buf_save")
+        buf[0] = @buf_ram_486
+        buf[1] = @buf_ram_487
+        buf[2] = @buf_ram_488
+        buf[3] = @buf_ram_489
+        buf[4] = @buf_ram_490
+        buf[5] = @buf_ram_491
+        buf[6] = @buf_ram_492
+        buf[7] = @buf_ram_493
+        buf[8] = @buf_ram_494
+        buf[9] = @buf_ram_495
+        buf[10] = @buf_ram_496
+        buf[11] = @buf_ram_497
+        buf[12] = @buf_ram_498
+        buf[13] = @buf_ram_499
+        buf[14] = @buf_ram_500
+        buf[15] = @buf_ram_501
+        buf[16] = @buf_ram_502
+        buf[17] = @buf_ram_503
+        buf[18] = @buf_ram_504
+        buf[19] = @buf_ram_505
+        buf[20] = @buf_ram_506
+        buf[21] = @buf_ram_507
+        buf[22] = @buf_ram_508
+        buf[23] = @buf_ram_509
+        save("display_19")
+        save("buf_save")
+    load("display_0")
+    print()
+    load("display_1")
+    print()
+    load("display_2")
+    print()
+    load("display_3")
+    print()
+    load("display_4")
+    print()
+    load("display_5")
+    print()
+    load("display_6")
+    print()
+    load("display_7")
+    print()
+    load("display_8")
+    print()
+    load("display_9")
+    print()
+    load("display_10")
+    print()
+    load("display_11")
+    print()
+    load("display_12")
+    print()
+    load("display_13")
+    print()
+    load("display_14")
+    print()
+    load("display_15")
+    print()
+    load("display_16")
+    print()
+    load("display_17")
+    print()
+    load("display_18")
+    print()
+    load("display_19")
+    print()
+    load("buf_save")
+
+def write_shape_0(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-8+@__script__disp_start] = val
+def check_shape_0(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-8+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_1(x, y, val):
+    ram[(y+-1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+-1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-9+@__script__disp_start] = val
+def check_shape_1(x, y):
+    to_ret = 'aaI'
+    off = (y+-1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_2(x, y, val):
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-8+@__script__disp_start] = val
+def check_shape_2(x, y):
+    to_ret = 'aaI'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-8+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_3(x, y, val):
+    ram[(y+-1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+-1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_3(x, y):
+    to_ret = 'aaI'
+    off = (y+-1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_4(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+def check_shape_4(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_5(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_5(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_6(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+def check_shape_6(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_7(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-11+@__script__disp_start] = val
+def check_shape_7(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_8(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_8(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_9(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-9+@__script__disp_start] = val
+def check_shape_9(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_10(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_10(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_11(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_11(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_12(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_12(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_13(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_13(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_14(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_14(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_15(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_15(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_16(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+def check_shape_16(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_17(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-9+@__script__disp_start] = val
+def check_shape_17(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_18(x, y, val):
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-11+@__script__disp_start] = val
+def check_shape_18(x, y):
+    to_ret = 'aaI'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_19(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_19(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_20(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+def check_shape_20(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_21(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_21(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_22(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+def check_shape_22(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_23(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+0)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_23(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+0)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_24(x, y, val):
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_24(x, y):
+    to_ret = 'aaI'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_25(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_25(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_26(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-11+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+def check_shape_26(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-11+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape_27(x, y, val):
+    ram[(y+0)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+1)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+2)*@__script__width_p1+@__script__disp_start] = 1
+    ram[(y+0)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-10+@__script__disp_start] = val
+    ram[(y+1)*@__script__width_p1+x+-9+@__script__disp_start] = val
+    ram[(y+2)*@__script__width_p1+x+-10+@__script__disp_start] = val
+def check_shape_27(x, y):
+    to_ret = 'aaI'
+    off = (y+0)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+1)*@__script__width_p1+x+-9+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    off = (y+2)*@__script__width_p1+x+-10+@__script__disp_start
+    val = ram[off]
+    if ( val == 'aaI' ):
+        pass
+    else:
+        if ( val == 'aaV'):
+            return 'aaV'
+        if ( val == 'aaY'):
+            return 'aaY'
+        if ( val == 'aaW'):
+            to_ret = 'aaW'
+    return to_ret
+def write_shape(x, y, val, ishape):
+    if ( ishape >= 24 ):
+        if ( ishape == 24 ):
+            return write_shape_24(x, y, val)
+        if ( ishape == 25 ):
+            return write_shape_25(x, y, val)
+        if ( ishape == 26 ):
+            return write_shape_26(x, y, val)
+        if ( ishape == 27 ):
+            return write_shape_27(x, y, val)
+    if ( ishape < 12 ):
+        if ( ishape < 6 ):
+            if ( ishape < 3 ):
+                if ( ishape == 0 ):
+                    return write_shape_0(x, y, val)
+                if ( ishape == 1 ):
+                    return write_shape_1(x, y, val)
+                if ( ishape == 2 ):
+                    return write_shape_2(x, y, val)
+            else:
+                if ( ishape == 3 ):
+                    return write_shape_3(x, y, val)
+                if ( ishape == 4 ):
+                    return write_shape_4(x, y, val)
+                if ( ishape == 5 ):
+                    return write_shape_5(x, y, val)
+        else:
+            if ( ishape < 9 ):
+                if ( ishape == 6 ):
+                    return write_shape_6(x, y, val)
+                if ( ishape == 7 ):
+                    return write_shape_7(x, y, val)
+                if ( ishape == 8 ):
+                    return write_shape_8(x, y, val)
+            else:
+                if ( ishape == 9 ):
+                    return write_shape_9(x, y, val)
+                if ( ishape == 10 ):
+                    return write_shape_10(x, y, val)
+                if ( ishape == 11 ):
+                    return write_shape_11(x, y, val)
+    else:
+        if ( ishape < 18 ):
+            if ( ishape < 15 ):
+                if ( ishape == 12 ):
+                    return write_shape_12(x, y, val)
+                if ( ishape == 13 ):
+                    return write_shape_13(x, y, val)
+                if ( ishape == 14 ):
+                    return write_shape_14(x, y, val)
+            else:
+                if ( ishape == 15 ):
+                    return write_shape_15(x, y, val)
+                if ( ishape == 16 ):
+                    return write_shape_16(x, y, val)
+                if ( ishape == 17 ):
+                    return write_shape_17(x, y, val)
+        else:
+            if ( ishape < 21 ):
+                if ( ishape == 18 ):
+                    return write_shape_18(x, y, val)
+                if ( ishape == 19 ):
+                    return write_shape_19(x, y, val)
+                if ( ishape == 20 ):
+                    return write_shape_20(x, y, val)
+            else:
+                if ( ishape == 21 ):
+                    return write_shape_21(x, y, val)
+                if ( ishape == 22 ):
+                    return write_shape_22(x, y, val)
+                if ( ishape == 23 ):
+                    return write_shape_23(x, y, val)
+def check_shape(x, y, ishape):
+    if ( ishape >= 24 ):
+        if ( ishape == 24 ):
+            return check_shape_24(x, y)
+        if ( ishape == 25 ):
+            return check_shape_25(x, y)
+        if ( ishape == 26 ):
+            return check_shape_26(x, y)
+        if ( ishape == 27 ):
+            return check_shape_27(x, y)
+    if ( ishape < 12 ):
+        if ( ishape < 6 ):
+            if ( ishape < 3 ):
+                if ( ishape == 0 ):
+                    return check_shape_0(x, y)
+                if ( ishape == 1 ):
+                    return check_shape_1(x, y)
+                if ( ishape == 2 ):
+                    return check_shape_2(x, y)
+            else:
+                if ( ishape == 3 ):
+                    return check_shape_3(x, y)
+                if ( ishape == 4 ):
+                    return check_shape_4(x, y)
+                if ( ishape == 5 ):
+                    return check_shape_5(x, y)
+        else:
+            if ( ishape < 9 ):
+                if ( ishape == 6 ):
+                    return check_shape_6(x, y)
+                if ( ishape == 7 ):
+                    return check_shape_7(x, y)
+                if ( ishape == 8 ):
+                    return check_shape_8(x, y)
+            else:
+                if ( ishape == 9 ):
+                    return check_shape_9(x, y)
+                if ( ishape == 10 ):
+                    return check_shape_10(x, y)
+                if ( ishape == 11 ):
+                    return check_shape_11(x, y)
+    else:
+        if ( ishape < 18 ):
+            if ( ishape < 15 ):
+                if ( ishape == 12 ):
+                    return check_shape_12(x, y)
+                if ( ishape == 13 ):
+                    return check_shape_13(x, y)
+                if ( ishape == 14 ):
+                    return check_shape_14(x, y)
+            else:
+                if ( ishape == 15 ):
+                    return check_shape_15(x, y)
+                if ( ishape == 16 ):
+                    return check_shape_16(x, y)
+                if ( ishape == 17 ):
+                    return check_shape_17(x, y)
+        else:
+            if ( ishape < 21 ):
+                if ( ishape == 18 ):
+                    return check_shape_18(x, y)
+                if ( ishape == 19 ):
+                    return check_shape_19(x, y)
+                if ( ishape == 20 ):
+                    return check_shape_20(x, y)
+            else:
+                if ( ishape == 21 ):
+                    return check_shape_21(x, y)
+                if ( ishape == 22 ):
+                    return check_shape_22(x, y)
+                if ( ishape == 23 ):
+                    return check_shape_23(x, y)
+
+def shift1_0():
+    @buf_ram_10 = 1
+    @buf_ram_12 = 'aaI'
+    @buf_ram_13 = 'aaI'
+    @buf_ram_14 = 'aaI'
+    @buf_ram_15 = 'aaI'
+    @buf_ram_16 = 'aaI'
+    @buf_ram_17 = 'aaI'
+    @buf_ram_18 = 'aaI'
+    @buf_ram_19 = 'aaI'
+    @buf_ram_20 = 'aaI'
+    @buf_ram_21 = 'aaI'
+def shift1_1():
+    @buf_ram_35 = 1
+    @buf_ram_37 = @buf_ram_12
+    @buf_ram_38 = @buf_ram_13
+    @buf_ram_39 = @buf_ram_14
+    @buf_ram_40 = @buf_ram_15
+    @buf_ram_41 = @buf_ram_16
+    @buf_ram_42 = @buf_ram_17
+    @buf_ram_43 = @buf_ram_18
+    @buf_ram_44 = @buf_ram_19
+    @buf_ram_45 = @buf_ram_20
+    @buf_ram_46 = @buf_ram_21
+def shift1_2():
+    @buf_ram_60 = 1
+    @buf_ram_62 = @buf_ram_37
+    @buf_ram_63 = @buf_ram_38
+    @buf_ram_64 = @buf_ram_39
+    @buf_ram_65 = @buf_ram_40
+    @buf_ram_66 = @buf_ram_41
+    @buf_ram_67 = @buf_ram_42
+    @buf_ram_68 = @buf_ram_43
+    @buf_ram_69 = @buf_ram_44
+    @buf_ram_70 = @buf_ram_45
+    @buf_ram_71 = @buf_ram_46
+def shift1_3():
+    @buf_ram_85 = 1
+    @buf_ram_87 = @buf_ram_62
+    @buf_ram_88 = @buf_ram_63
+    @buf_ram_89 = @buf_ram_64
+    @buf_ram_90 = @buf_ram_65
+    @buf_ram_91 = @buf_ram_66
+    @buf_ram_92 = @buf_ram_67
+    @buf_ram_93 = @buf_ram_68
+    @buf_ram_94 = @buf_ram_69
+    @buf_ram_95 = @buf_ram_70
+    @buf_ram_96 = @buf_ram_71
+def shift1_4():
+    @buf_ram_110 = 1
+    @buf_ram_112 = @buf_ram_87
+    @buf_ram_113 = @buf_ram_88
+    @buf_ram_114 = @buf_ram_89
+    @buf_ram_115 = @buf_ram_90
+    @buf_ram_116 = @buf_ram_91
+    @buf_ram_117 = @buf_ram_92
+    @buf_ram_118 = @buf_ram_93
+    @buf_ram_119 = @buf_ram_94
+    @buf_ram_120 = @buf_ram_95
+    @buf_ram_121 = @buf_ram_96
+def shift1_5():
+    @buf_ram_135 = 1
+    @buf_ram_137 = @buf_ram_112
+    @buf_ram_138 = @buf_ram_113
+    @buf_ram_139 = @buf_ram_114
+    @buf_ram_140 = @buf_ram_115
+    @buf_ram_141 = @buf_ram_116
+    @buf_ram_142 = @buf_ram_117
+    @buf_ram_143 = @buf_ram_118
+    @buf_ram_144 = @buf_ram_119
+    @buf_ram_145 = @buf_ram_120
+    @buf_ram_146 = @buf_ram_121
+def shift1_6():
+    @buf_ram_160 = 1
+    @buf_ram_162 = @buf_ram_137
+    @buf_ram_163 = @buf_ram_138
+    @buf_ram_164 = @buf_ram_139
+    @buf_ram_165 = @buf_ram_140
+    @buf_ram_166 = @buf_ram_141
+    @buf_ram_167 = @buf_ram_142
+    @buf_ram_168 = @buf_ram_143
+    @buf_ram_169 = @buf_ram_144
+    @buf_ram_170 = @buf_ram_145
+    @buf_ram_171 = @buf_ram_146
+def shift1_7():
+    @buf_ram_185 = 1
+    @buf_ram_187 = @buf_ram_162
+    @buf_ram_188 = @buf_ram_163
+    @buf_ram_189 = @buf_ram_164
+    @buf_ram_190 = @buf_ram_165
+    @buf_ram_191 = @buf_ram_166
+    @buf_ram_192 = @buf_ram_167
+    @buf_ram_193 = @buf_ram_168
+    @buf_ram_194 = @buf_ram_169
+    @buf_ram_195 = @buf_ram_170
+    @buf_ram_196 = @buf_ram_171
+def shift1_8():
+    @buf_ram_210 = 1
+    @buf_ram_212 = @buf_ram_187
+    @buf_ram_213 = @buf_ram_188
+    @buf_ram_214 = @buf_ram_189
+    @buf_ram_215 = @buf_ram_190
+    @buf_ram_216 = @buf_ram_191
+    @buf_ram_217 = @buf_ram_192
+    @buf_ram_218 = @buf_ram_193
+    @buf_ram_219 = @buf_ram_194
+    @buf_ram_220 = @buf_ram_195
+    @buf_ram_221 = @buf_ram_196
+def shift1_9():
+    @buf_ram_235 = 1
+    @buf_ram_237 = @buf_ram_212
+    @buf_ram_238 = @buf_ram_213
+    @buf_ram_239 = @buf_ram_214
+    @buf_ram_240 = @buf_ram_215
+    @buf_ram_241 = @buf_ram_216
+    @buf_ram_242 = @buf_ram_217
+    @buf_ram_243 = @buf_ram_218
+    @buf_ram_244 = @buf_ram_219
+    @buf_ram_245 = @buf_ram_220
+    @buf_ram_246 = @buf_ram_221
+def shift1_10():
+    @buf_ram_260 = 1
+    @buf_ram_262 = @buf_ram_237
+    @buf_ram_263 = @buf_ram_238
+    @buf_ram_264 = @buf_ram_239
+    @buf_ram_265 = @buf_ram_240
+    @buf_ram_266 = @buf_ram_241
+    @buf_ram_267 = @buf_ram_242
+    @buf_ram_268 = @buf_ram_243
+    @buf_ram_269 = @buf_ram_244
+    @buf_ram_270 = @buf_ram_245
+    @buf_ram_271 = @buf_ram_246
+def shift1_11():
+    @buf_ram_285 = 1
+    @buf_ram_287 = @buf_ram_262
+    @buf_ram_288 = @buf_ram_263
+    @buf_ram_289 = @buf_ram_264
+    @buf_ram_290 = @buf_ram_265
+    @buf_ram_291 = @buf_ram_266
+    @buf_ram_292 = @buf_ram_267
+    @buf_ram_293 = @buf_ram_268
+    @buf_ram_294 = @buf_ram_269
+    @buf_ram_295 = @buf_ram_270
+    @buf_ram_296 = @buf_ram_271
+def shift1_12():
+    @buf_ram_310 = 1
+    @buf_ram_312 = @buf_ram_287
+    @buf_ram_313 = @buf_ram_288
+    @buf_ram_314 = @buf_ram_289
+    @buf_ram_315 = @buf_ram_290
+    @buf_ram_316 = @buf_ram_291
+    @buf_ram_317 = @buf_ram_292
+    @buf_ram_318 = @buf_ram_293
+    @buf_ram_319 = @buf_ram_294
+    @buf_ram_320 = @buf_ram_295
+    @buf_ram_321 = @buf_ram_296
+def shift1_13():
+    @buf_ram_335 = 1
+    @buf_ram_337 = @buf_ram_312
+    @buf_ram_338 = @buf_ram_313
+    @buf_ram_339 = @buf_ram_314
+    @buf_ram_340 = @buf_ram_315
+    @buf_ram_341 = @buf_ram_316
+    @buf_ram_342 = @buf_ram_317
+    @buf_ram_343 = @buf_ram_318
+    @buf_ram_344 = @buf_ram_319
+    @buf_ram_345 = @buf_ram_320
+    @buf_ram_346 = @buf_ram_321
+def shift1_14():
+    @buf_ram_360 = 1
+    @buf_ram_362 = @buf_ram_337
+    @buf_ram_363 = @buf_ram_338
+    @buf_ram_364 = @buf_ram_339
+    @buf_ram_365 = @buf_ram_340
+    @buf_ram_366 = @buf_ram_341
+    @buf_ram_367 = @buf_ram_342
+    @buf_ram_368 = @buf_ram_343
+    @buf_ram_369 = @buf_ram_344
+    @buf_ram_370 = @buf_ram_345
+    @buf_ram_371 = @buf_ram_346
+def shift1_15():
+    @buf_ram_385 = 1
+    @buf_ram_387 = @buf_ram_362
+    @buf_ram_388 = @buf_ram_363
+    @buf_ram_389 = @buf_ram_364
+    @buf_ram_390 = @buf_ram_365
+    @buf_ram_391 = @buf_ram_366
+    @buf_ram_392 = @buf_ram_367
+    @buf_ram_393 = @buf_ram_368
+    @buf_ram_394 = @buf_ram_369
+    @buf_ram_395 = @buf_ram_370
+    @buf_ram_396 = @buf_ram_371
+def shift1_16():
+    @buf_ram_410 = 1
+    @buf_ram_412 = @buf_ram_387
+    @buf_ram_413 = @buf_ram_388
+    @buf_ram_414 = @buf_ram_389
+    @buf_ram_415 = @buf_ram_390
+    @buf_ram_416 = @buf_ram_391
+    @buf_ram_417 = @buf_ram_392
+    @buf_ram_418 = @buf_ram_393
+    @buf_ram_419 = @buf_ram_394
+    @buf_ram_420 = @buf_ram_395
+    @buf_ram_421 = @buf_ram_396
+def shift1_17():
+    @buf_ram_435 = 1
+    @buf_ram_437 = @buf_ram_412
+    @buf_ram_438 = @buf_ram_413
+    @buf_ram_439 = @buf_ram_414
+    @buf_ram_440 = @buf_ram_415
+    @buf_ram_441 = @buf_ram_416
+    @buf_ram_442 = @buf_ram_417
+    @buf_ram_443 = @buf_ram_418
+    @buf_ram_444 = @buf_ram_419
+    @buf_ram_445 = @buf_ram_420
+    @buf_ram_446 = @buf_ram_421
+def shift1_18():
+    @buf_ram_460 = 1
+    @buf_ram_462 = @buf_ram_437
+    @buf_ram_463 = @buf_ram_438
+    @buf_ram_464 = @buf_ram_439
+    @buf_ram_465 = @buf_ram_440
+    @buf_ram_466 = @buf_ram_441
+    @buf_ram_467 = @buf_ram_442
+    @buf_ram_468 = @buf_ram_443
+    @buf_ram_469 = @buf_ram_444
+    @buf_ram_470 = @buf_ram_445
+    @buf_ram_471 = @buf_ram_446
+def shift2_0():
+    @buf_ram_10 = 1
+    @buf_ram_12 = 'aaI'
+    @buf_ram_13 = 'aaI'
+    @buf_ram_14 = 'aaI'
+    @buf_ram_15 = 'aaI'
+    @buf_ram_16 = 'aaI'
+    @buf_ram_17 = 'aaI'
+    @buf_ram_18 = 'aaI'
+    @buf_ram_19 = 'aaI'
+    @buf_ram_20 = 'aaI'
+    @buf_ram_21 = 'aaI'
+def shift2_1():
+    @buf_ram_35 = 1
+    @buf_ram_37 = 'aaI'
+    @buf_ram_38 = 'aaI'
+    @buf_ram_39 = 'aaI'
+    @buf_ram_40 = 'aaI'
+    @buf_ram_41 = 'aaI'
+    @buf_ram_42 = 'aaI'
+    @buf_ram_43 = 'aaI'
+    @buf_ram_44 = 'aaI'
+    @buf_ram_45 = 'aaI'
+    @buf_ram_46 = 'aaI'
+def shift2_2():
+    @buf_ram_60 = 1
+    @buf_ram_62 = @buf_ram_12
+    @buf_ram_63 = @buf_ram_13
+    @buf_ram_64 = @buf_ram_14
+    @buf_ram_65 = @buf_ram_15
+    @buf_ram_66 = @buf_ram_16
+    @buf_ram_67 = @buf_ram_17
+    @buf_ram_68 = @buf_ram_18
+    @buf_ram_69 = @buf_ram_19
+    @buf_ram_70 = @buf_ram_20
+    @buf_ram_71 = @buf_ram_21
+def shift2_3():
+    @buf_ram_85 = 1
+    @buf_ram_87 = @buf_ram_37
+    @buf_ram_88 = @buf_ram_38
+    @buf_ram_89 = @buf_ram_39
+    @buf_ram_90 = @buf_ram_40
+    @buf_ram_91 = @buf_ram_41
+    @buf_ram_92 = @buf_ram_42
+    @buf_ram_93 = @buf_ram_43
+    @buf_ram_94 = @buf_ram_44
+    @buf_ram_95 = @buf_ram_45
+    @buf_ram_96 = @buf_ram_46
+def shift2_4():
+    @buf_ram_110 = 1
+    @buf_ram_112 = @buf_ram_62
+    @buf_ram_113 = @buf_ram_63
+    @buf_ram_114 = @buf_ram_64
+    @buf_ram_115 = @buf_ram_65
+    @buf_ram_116 = @buf_ram_66
+    @buf_ram_117 = @buf_ram_67
+    @buf_ram_118 = @buf_ram_68
+    @buf_ram_119 = @buf_ram_69
+    @buf_ram_120 = @buf_ram_70
+    @buf_ram_121 = @buf_ram_71
+def shift2_5():
+    @buf_ram_135 = 1
+    @buf_ram_137 = @buf_ram_87
+    @buf_ram_138 = @buf_ram_88
+    @buf_ram_139 = @buf_ram_89
+    @buf_ram_140 = @buf_ram_90
+    @buf_ram_141 = @buf_ram_91
+    @buf_ram_142 = @buf_ram_92
+    @buf_ram_143 = @buf_ram_93
+    @buf_ram_144 = @buf_ram_94
+    @buf_ram_145 = @buf_ram_95
+    @buf_ram_146 = @buf_ram_96
+def shift2_6():
+    @buf_ram_160 = 1
+    @buf_ram_162 = @buf_ram_112
+    @buf_ram_163 = @buf_ram_113
+    @buf_ram_164 = @buf_ram_114
+    @buf_ram_165 = @buf_ram_115
+    @buf_ram_166 = @buf_ram_116
+    @buf_ram_167 = @buf_ram_117
+    @buf_ram_168 = @buf_ram_118
+    @buf_ram_169 = @buf_ram_119
+    @buf_ram_170 = @buf_ram_120
+    @buf_ram_171 = @buf_ram_121
+def shift2_7():
+    @buf_ram_185 = 1
+    @buf_ram_187 = @buf_ram_137
+    @buf_ram_188 = @buf_ram_138
+    @buf_ram_189 = @buf_ram_139
+    @buf_ram_190 = @buf_ram_140
+    @buf_ram_191 = @buf_ram_141
+    @buf_ram_192 = @buf_ram_142
+    @buf_ram_193 = @buf_ram_143
+    @buf_ram_194 = @buf_ram_144
+    @buf_ram_195 = @buf_ram_145
+    @buf_ram_196 = @buf_ram_146
+def shift2_8():
+    @buf_ram_210 = 1
+    @buf_ram_212 = @buf_ram_162
+    @buf_ram_213 = @buf_ram_163
+    @buf_ram_214 = @buf_ram_164
+    @buf_ram_215 = @buf_ram_165
+    @buf_ram_216 = @buf_ram_166
+    @buf_ram_217 = @buf_ram_167
+    @buf_ram_218 = @buf_ram_168
+    @buf_ram_219 = @buf_ram_169
+    @buf_ram_220 = @buf_ram_170
+    @buf_ram_221 = @buf_ram_171
+def shift2_9():
+    @buf_ram_235 = 1
+    @buf_ram_237 = @buf_ram_187
+    @buf_ram_238 = @buf_ram_188
+    @buf_ram_239 = @buf_ram_189
+    @buf_ram_240 = @buf_ram_190
+    @buf_ram_241 = @buf_ram_191
+    @buf_ram_242 = @buf_ram_192
+    @buf_ram_243 = @buf_ram_193
+    @buf_ram_244 = @buf_ram_194
+    @buf_ram_245 = @buf_ram_195
+    @buf_ram_246 = @buf_ram_196
+def shift2_10():
+    @buf_ram_260 = 1
+    @buf_ram_262 = @buf_ram_212
+    @buf_ram_263 = @buf_ram_213
+    @buf_ram_264 = @buf_ram_214
+    @buf_ram_265 = @buf_ram_215
+    @buf_ram_266 = @buf_ram_216
+    @buf_ram_267 = @buf_ram_217
+    @buf_ram_268 = @buf_ram_218
+    @buf_ram_269 = @buf_ram_219
+    @buf_ram_270 = @buf_ram_220
+    @buf_ram_271 = @buf_ram_221
+def shift2_11():
+    @buf_ram_285 = 1
+    @buf_ram_287 = @buf_ram_237
+    @buf_ram_288 = @buf_ram_238
+    @buf_ram_289 = @buf_ram_239
+    @buf_ram_290 = @buf_ram_240
+    @buf_ram_291 = @buf_ram_241
+    @buf_ram_292 = @buf_ram_242
+    @buf_ram_293 = @buf_ram_243
+    @buf_ram_294 = @buf_ram_244
+    @buf_ram_295 = @buf_ram_245
+    @buf_ram_296 = @buf_ram_246
+def shift2_12():
+    @buf_ram_310 = 1
+    @buf_ram_312 = @buf_ram_262
+    @buf_ram_313 = @buf_ram_263
+    @buf_ram_314 = @buf_ram_264
+    @buf_ram_315 = @buf_ram_265
+    @buf_ram_316 = @buf_ram_266
+    @buf_ram_317 = @buf_ram_267
+    @buf_ram_318 = @buf_ram_268
+    @buf_ram_319 = @buf_ram_269
+    @buf_ram_320 = @buf_ram_270
+    @buf_ram_321 = @buf_ram_271
+def shift2_13():
+    @buf_ram_335 = 1
+    @buf_ram_337 = @buf_ram_287
+    @buf_ram_338 = @buf_ram_288
+    @buf_ram_339 = @buf_ram_289
+    @buf_ram_340 = @buf_ram_290
+    @buf_ram_341 = @buf_ram_291
+    @buf_ram_342 = @buf_ram_292
+    @buf_ram_343 = @buf_ram_293
+    @buf_ram_344 = @buf_ram_294
+    @buf_ram_345 = @buf_ram_295
+    @buf_ram_346 = @buf_ram_296
+def shift2_14():
+    @buf_ram_360 = 1
+    @buf_ram_362 = @buf_ram_312
+    @buf_ram_363 = @buf_ram_313
+    @buf_ram_364 = @buf_ram_314
+    @buf_ram_365 = @buf_ram_315
+    @buf_ram_366 = @buf_ram_316
+    @buf_ram_367 = @buf_ram_317
+    @buf_ram_368 = @buf_ram_318
+    @buf_ram_369 = @buf_ram_319
+    @buf_ram_370 = @buf_ram_320
+    @buf_ram_371 = @buf_ram_321
+def shift2_15():
+    @buf_ram_385 = 1
+    @buf_ram_387 = @buf_ram_337
+    @buf_ram_388 = @buf_ram_338
+    @buf_ram_389 = @buf_ram_339
+    @buf_ram_390 = @buf_ram_340
+    @buf_ram_391 = @buf_ram_341
+    @buf_ram_392 = @buf_ram_342
+    @buf_ram_393 = @buf_ram_343
+    @buf_ram_394 = @buf_ram_344
+    @buf_ram_395 = @buf_ram_345
+    @buf_ram_396 = @buf_ram_346
+def shift2_16():
+    @buf_ram_410 = 1
+    @buf_ram_412 = @buf_ram_362
+    @buf_ram_413 = @buf_ram_363
+    @buf_ram_414 = @buf_ram_364
+    @buf_ram_415 = @buf_ram_365
+    @buf_ram_416 = @buf_ram_366
+    @buf_ram_417 = @buf_ram_367
+    @buf_ram_418 = @buf_ram_368
+    @buf_ram_419 = @buf_ram_369
+    @buf_ram_420 = @buf_ram_370
+    @buf_ram_421 = @buf_ram_371
+def shift2_17():
+    @buf_ram_435 = 1
+    @buf_ram_437 = @buf_ram_387
+    @buf_ram_438 = @buf_ram_388
+    @buf_ram_439 = @buf_ram_389
+    @buf_ram_440 = @buf_ram_390
+    @buf_ram_441 = @buf_ram_391
+    @buf_ram_442 = @buf_ram_392
+    @buf_ram_443 = @buf_ram_393
+    @buf_ram_444 = @buf_ram_394
+    @buf_ram_445 = @buf_ram_395
+    @buf_ram_446 = @buf_ram_396
+def shift2_18():
+    @buf_ram_460 = 1
+    @buf_ram_462 = @buf_ram_412
+    @buf_ram_463 = @buf_ram_413
+    @buf_ram_464 = @buf_ram_414
+    @buf_ram_465 = @buf_ram_415
+    @buf_ram_466 = @buf_ram_416
+    @buf_ram_467 = @buf_ram_417
+    @buf_ram_468 = @buf_ram_418
+    @buf_ram_469 = @buf_ram_419
+    @buf_ram_470 = @buf_ram_420
+    @buf_ram_471 = @buf_ram_421
+def shift3_0():
+    @buf_ram_10 = 1
+    @buf_ram_12 = 'aaI'
+    @buf_ram_13 = 'aaI'
+    @buf_ram_14 = 'aaI'
+    @buf_ram_15 = 'aaI'
+    @buf_ram_16 = 'aaI'
+    @buf_ram_17 = 'aaI'
+    @buf_ram_18 = 'aaI'
+    @buf_ram_19 = 'aaI'
+    @buf_ram_20 = 'aaI'
+    @buf_ram_21 = 'aaI'
+def shift3_1():
+    @buf_ram_35 = 1
+    @buf_ram_37 = 'aaI'
+    @buf_ram_38 = 'aaI'
+    @buf_ram_39 = 'aaI'
+    @buf_ram_40 = 'aaI'
+    @buf_ram_41 = 'aaI'
+    @buf_ram_42 = 'aaI'
+    @buf_ram_43 = 'aaI'
+    @buf_ram_44 = 'aaI'
+    @buf_ram_45 = 'aaI'
+    @buf_ram_46 = 'aaI'
+def shift3_2():
+    @buf_ram_60 = 1
+    @buf_ram_62 = 'aaI'
+    @buf_ram_63 = 'aaI'
+    @buf_ram_64 = 'aaI'
+    @buf_ram_65 = 'aaI'
+    @buf_ram_66 = 'aaI'
+    @buf_ram_67 = 'aaI'
+    @buf_ram_68 = 'aaI'
+    @buf_ram_69 = 'aaI'
+    @buf_ram_70 = 'aaI'
+    @buf_ram_71 = 'aaI'
+def shift3_3():
+    @buf_ram_85 = 1
+    @buf_ram_87 = @buf_ram_12
+    @buf_ram_88 = @buf_ram_13
+    @buf_ram_89 = @buf_ram_14
+    @buf_ram_90 = @buf_ram_15
+    @buf_ram_91 = @buf_ram_16
+    @buf_ram_92 = @buf_ram_17
+    @buf_ram_93 = @buf_ram_18
+    @buf_ram_94 = @buf_ram_19
+    @buf_ram_95 = @buf_ram_20
+    @buf_ram_96 = @buf_ram_21
+def shift3_4():
+    @buf_ram_110 = 1
+    @buf_ram_112 = @buf_ram_37
+    @buf_ram_113 = @buf_ram_38
+    @buf_ram_114 = @buf_ram_39
+    @buf_ram_115 = @buf_ram_40
+    @buf_ram_116 = @buf_ram_41
+    @buf_ram_117 = @buf_ram_42
+    @buf_ram_118 = @buf_ram_43
+    @buf_ram_119 = @buf_ram_44
+    @buf_ram_120 = @buf_ram_45
+    @buf_ram_121 = @buf_ram_46
+def shift3_5():
+    @buf_ram_135 = 1
+    @buf_ram_137 = @buf_ram_62
+    @buf_ram_138 = @buf_ram_63
+    @buf_ram_139 = @buf_ram_64
+    @buf_ram_140 = @buf_ram_65
+    @buf_ram_141 = @buf_ram_66
+    @buf_ram_142 = @buf_ram_67
+    @buf_ram_143 = @buf_ram_68
+    @buf_ram_144 = @buf_ram_69
+    @buf_ram_145 = @buf_ram_70
+    @buf_ram_146 = @buf_ram_71
+def shift3_6():
+    @buf_ram_160 = 1
+    @buf_ram_162 = @buf_ram_87
+    @buf_ram_163 = @buf_ram_88
+    @buf_ram_164 = @buf_ram_89
+    @buf_ram_165 = @buf_ram_90
+    @buf_ram_166 = @buf_ram_91
+    @buf_ram_167 = @buf_ram_92
+    @buf_ram_168 = @buf_ram_93
+    @buf_ram_169 = @buf_ram_94
+    @buf_ram_170 = @buf_ram_95
+    @buf_ram_171 = @buf_ram_96
+def shift3_7():
+    @buf_ram_185 = 1
+    @buf_ram_187 = @buf_ram_112
+    @buf_ram_188 = @buf_ram_113
+    @buf_ram_189 = @buf_ram_114
+    @buf_ram_190 = @buf_ram_115
+    @buf_ram_191 = @buf_ram_116
+    @buf_ram_192 = @buf_ram_117
+    @buf_ram_193 = @buf_ram_118
+    @buf_ram_194 = @buf_ram_119
+    @buf_ram_195 = @buf_ram_120
+    @buf_ram_196 = @buf_ram_121
+def shift3_8():
+    @buf_ram_210 = 1
+    @buf_ram_212 = @buf_ram_137
+    @buf_ram_213 = @buf_ram_138
+    @buf_ram_214 = @buf_ram_139
+    @buf_ram_215 = @buf_ram_140
+    @buf_ram_216 = @buf_ram_141
+    @buf_ram_217 = @buf_ram_142
+    @buf_ram_218 = @buf_ram_143
+    @buf_ram_219 = @buf_ram_144
+    @buf_ram_220 = @buf_ram_145
+    @buf_ram_221 = @buf_ram_146
+def shift3_9():
+    @buf_ram_235 = 1
+    @buf_ram_237 = @buf_ram_162
+    @buf_ram_238 = @buf_ram_163
+    @buf_ram_239 = @buf_ram_164
+    @buf_ram_240 = @buf_ram_165
+    @buf_ram_241 = @buf_ram_166
+    @buf_ram_242 = @buf_ram_167
+    @buf_ram_243 = @buf_ram_168
+    @buf_ram_244 = @buf_ram_169
+    @buf_ram_245 = @buf_ram_170
+    @buf_ram_246 = @buf_ram_171
+def shift3_10():
+    @buf_ram_260 = 1
+    @buf_ram_262 = @buf_ram_187
+    @buf_ram_263 = @buf_ram_188
+    @buf_ram_264 = @buf_ram_189
+    @buf_ram_265 = @buf_ram_190
+    @buf_ram_266 = @buf_ram_191
+    @buf_ram_267 = @buf_ram_192
+    @buf_ram_268 = @buf_ram_193
+    @buf_ram_269 = @buf_ram_194
+    @buf_ram_270 = @buf_ram_195
+    @buf_ram_271 = @buf_ram_196
+def shift3_11():
+    @buf_ram_285 = 1
+    @buf_ram_287 = @buf_ram_212
+    @buf_ram_288 = @buf_ram_213
+    @buf_ram_289 = @buf_ram_214
+    @buf_ram_290 = @buf_ram_215
+    @buf_ram_291 = @buf_ram_216
+    @buf_ram_292 = @buf_ram_217
+    @buf_ram_293 = @buf_ram_218
+    @buf_ram_294 = @buf_ram_219
+    @buf_ram_295 = @buf_ram_220
+    @buf_ram_296 = @buf_ram_221
+def shift3_12():
+    @buf_ram_310 = 1
+    @buf_ram_312 = @buf_ram_237
+    @buf_ram_313 = @buf_ram_238
+    @buf_ram_314 = @buf_ram_239
+    @buf_ram_315 = @buf_ram_240
+    @buf_ram_316 = @buf_ram_241
+    @buf_ram_317 = @buf_ram_242
+    @buf_ram_318 = @buf_ram_243
+    @buf_ram_319 = @buf_ram_244
+    @buf_ram_320 = @buf_ram_245
+    @buf_ram_321 = @buf_ram_246
+def shift3_13():
+    @buf_ram_335 = 1
+    @buf_ram_337 = @buf_ram_262
+    @buf_ram_338 = @buf_ram_263
+    @buf_ram_339 = @buf_ram_264
+    @buf_ram_340 = @buf_ram_265
+    @buf_ram_341 = @buf_ram_266
+    @buf_ram_342 = @buf_ram_267
+    @buf_ram_343 = @buf_ram_268
+    @buf_ram_344 = @buf_ram_269
+    @buf_ram_345 = @buf_ram_270
+    @buf_ram_346 = @buf_ram_271
+def shift3_14():
+    @buf_ram_360 = 1
+    @buf_ram_362 = @buf_ram_287
+    @buf_ram_363 = @buf_ram_288
+    @buf_ram_364 = @buf_ram_289
+    @buf_ram_365 = @buf_ram_290
+    @buf_ram_366 = @buf_ram_291
+    @buf_ram_367 = @buf_ram_292
+    @buf_ram_368 = @buf_ram_293
+    @buf_ram_369 = @buf_ram_294
+    @buf_ram_370 = @buf_ram_295
+    @buf_ram_371 = @buf_ram_296
+def shift3_15():
+    @buf_ram_385 = 1
+    @buf_ram_387 = @buf_ram_312
+    @buf_ram_388 = @buf_ram_313
+    @buf_ram_389 = @buf_ram_314
+    @buf_ram_390 = @buf_ram_315
+    @buf_ram_391 = @buf_ram_316
+    @buf_ram_392 = @buf_ram_317
+    @buf_ram_393 = @buf_ram_318
+    @buf_ram_394 = @buf_ram_319
+    @buf_ram_395 = @buf_ram_320
+    @buf_ram_396 = @buf_ram_321
+def shift3_16():
+    @buf_ram_410 = 1
+    @buf_ram_412 = @buf_ram_337
+    @buf_ram_413 = @buf_ram_338
+    @buf_ram_414 = @buf_ram_339
+    @buf_ram_415 = @buf_ram_340
+    @buf_ram_416 = @buf_ram_341
+    @buf_ram_417 = @buf_ram_342
+    @buf_ram_418 = @buf_ram_343
+    @buf_ram_419 = @buf_ram_344
+    @buf_ram_420 = @buf_ram_345
+    @buf_ram_421 = @buf_ram_346
+def shift3_17():
+    @buf_ram_435 = 1
+    @buf_ram_437 = @buf_ram_362
+    @buf_ram_438 = @buf_ram_363
+    @buf_ram_439 = @buf_ram_364
+    @buf_ram_440 = @buf_ram_365
+    @buf_ram_441 = @buf_ram_366
+    @buf_ram_442 = @buf_ram_367
+    @buf_ram_443 = @buf_ram_368
+    @buf_ram_444 = @buf_ram_369
+    @buf_ram_445 = @buf_ram_370
+    @buf_ram_446 = @buf_ram_371
+def shift3_18():
+    @buf_ram_460 = 1
+    @buf_ram_462 = @buf_ram_387
+    @buf_ram_463 = @buf_ram_388
+    @buf_ram_464 = @buf_ram_389
+    @buf_ram_465 = @buf_ram_390
+    @buf_ram_466 = @buf_ram_391
+    @buf_ram_467 = @buf_ram_392
+    @buf_ram_468 = @buf_ram_393
+    @buf_ram_469 = @buf_ram_394
+    @buf_ram_470 = @buf_ram_395
+    @buf_ram_471 = @buf_ram_396
+def shift4_0():
+    @buf_ram_10 = 1
+    @buf_ram_12 = 'aaI'
+    @buf_ram_13 = 'aaI'
+    @buf_ram_14 = 'aaI'
+    @buf_ram_15 = 'aaI'
+    @buf_ram_16 = 'aaI'
+    @buf_ram_17 = 'aaI'
+    @buf_ram_18 = 'aaI'
+    @buf_ram_19 = 'aaI'
+    @buf_ram_20 = 'aaI'
+    @buf_ram_21 = 'aaI'
+def shift4_1():
+    @buf_ram_35 = 1
+    @buf_ram_37 = 'aaI'
+    @buf_ram_38 = 'aaI'
+    @buf_ram_39 = 'aaI'
+    @buf_ram_40 = 'aaI'
+    @buf_ram_41 = 'aaI'
+    @buf_ram_42 = 'aaI'
+    @buf_ram_43 = 'aaI'
+    @buf_ram_44 = 'aaI'
+    @buf_ram_45 = 'aaI'
+    @buf_ram_46 = 'aaI'
+def shift4_2():
+    @buf_ram_60 = 1
+    @buf_ram_62 = 'aaI'
+    @buf_ram_63 = 'aaI'
+    @buf_ram_64 = 'aaI'
+    @buf_ram_65 = 'aaI'
+    @buf_ram_66 = 'aaI'
+    @buf_ram_67 = 'aaI'
+    @buf_ram_68 = 'aaI'
+    @buf_ram_69 = 'aaI'
+    @buf_ram_70 = 'aaI'
+    @buf_ram_71 = 'aaI'
+def shift4_3():
+    @buf_ram_85 = 1
+    @buf_ram_87 = 'aaI'
+    @buf_ram_88 = 'aaI'
+    @buf_ram_89 = 'aaI'
+    @buf_ram_90 = 'aaI'
+    @buf_ram_91 = 'aaI'
+    @buf_ram_92 = 'aaI'
+    @buf_ram_93 = 'aaI'
+    @buf_ram_94 = 'aaI'
+    @buf_ram_95 = 'aaI'
+    @buf_ram_96 = 'aaI'
+def shift4_4():
+    @buf_ram_110 = 1
+    @buf_ram_112 = @buf_ram_12
+    @buf_ram_113 = @buf_ram_13
+    @buf_ram_114 = @buf_ram_14
+    @buf_ram_115 = @buf_ram_15
+    @buf_ram_116 = @buf_ram_16
+    @buf_ram_117 = @buf_ram_17
+    @buf_ram_118 = @buf_ram_18
+    @buf_ram_119 = @buf_ram_19
+    @buf_ram_120 = @buf_ram_20
+    @buf_ram_121 = @buf_ram_21
+def shift4_5():
+    @buf_ram_135 = 1
+    @buf_ram_137 = @buf_ram_37
+    @buf_ram_138 = @buf_ram_38
+    @buf_ram_139 = @buf_ram_39
+    @buf_ram_140 = @buf_ram_40
+    @buf_ram_141 = @buf_ram_41
+    @buf_ram_142 = @buf_ram_42
+    @buf_ram_143 = @buf_ram_43
+    @buf_ram_144 = @buf_ram_44
+    @buf_ram_145 = @buf_ram_45
+    @buf_ram_146 = @buf_ram_46
+def shift4_6():
+    @buf_ram_160 = 1
+    @buf_ram_162 = @buf_ram_62
+    @buf_ram_163 = @buf_ram_63
+    @buf_ram_164 = @buf_ram_64
+    @buf_ram_165 = @buf_ram_65
+    @buf_ram_166 = @buf_ram_66
+    @buf_ram_167 = @buf_ram_67
+    @buf_ram_168 = @buf_ram_68
+    @buf_ram_169 = @buf_ram_69
+    @buf_ram_170 = @buf_ram_70
+    @buf_ram_171 = @buf_ram_71
+def shift4_7():
+    @buf_ram_185 = 1
+    @buf_ram_187 = @buf_ram_87
+    @buf_ram_188 = @buf_ram_88
+    @buf_ram_189 = @buf_ram_89
+    @buf_ram_190 = @buf_ram_90
+    @buf_ram_191 = @buf_ram_91
+    @buf_ram_192 = @buf_ram_92
+    @buf_ram_193 = @buf_ram_93
+    @buf_ram_194 = @buf_ram_94
+    @buf_ram_195 = @buf_ram_95
+    @buf_ram_196 = @buf_ram_96
+def shift4_8():
+    @buf_ram_210 = 1
+    @buf_ram_212 = @buf_ram_112
+    @buf_ram_213 = @buf_ram_113
+    @buf_ram_214 = @buf_ram_114
+    @buf_ram_215 = @buf_ram_115
+    @buf_ram_216 = @buf_ram_116
+    @buf_ram_217 = @buf_ram_117
+    @buf_ram_218 = @buf_ram_118
+    @buf_ram_219 = @buf_ram_119
+    @buf_ram_220 = @buf_ram_120
+    @buf_ram_221 = @buf_ram_121
+def shift4_9():
+    @buf_ram_235 = 1
+    @buf_ram_237 = @buf_ram_137
+    @buf_ram_238 = @buf_ram_138
+    @buf_ram_239 = @buf_ram_139
+    @buf_ram_240 = @buf_ram_140
+    @buf_ram_241 = @buf_ram_141
+    @buf_ram_242 = @buf_ram_142
+    @buf_ram_243 = @buf_ram_143
+    @buf_ram_244 = @buf_ram_144
+    @buf_ram_245 = @buf_ram_145
+    @buf_ram_246 = @buf_ram_146
+def shift4_10():
+    @buf_ram_260 = 1
+    @buf_ram_262 = @buf_ram_162
+    @buf_ram_263 = @buf_ram_163
+    @buf_ram_264 = @buf_ram_164
+    @buf_ram_265 = @buf_ram_165
+    @buf_ram_266 = @buf_ram_166
+    @buf_ram_267 = @buf_ram_167
+    @buf_ram_268 = @buf_ram_168
+    @buf_ram_269 = @buf_ram_169
+    @buf_ram_270 = @buf_ram_170
+    @buf_ram_271 = @buf_ram_171
+def shift4_11():
+    @buf_ram_285 = 1
+    @buf_ram_287 = @buf_ram_187
+    @buf_ram_288 = @buf_ram_188
+    @buf_ram_289 = @buf_ram_189
+    @buf_ram_290 = @buf_ram_190
+    @buf_ram_291 = @buf_ram_191
+    @buf_ram_292 = @buf_ram_192
+    @buf_ram_293 = @buf_ram_193
+    @buf_ram_294 = @buf_ram_194
+    @buf_ram_295 = @buf_ram_195
+    @buf_ram_296 = @buf_ram_196
+def shift4_12():
+    @buf_ram_310 = 1
+    @buf_ram_312 = @buf_ram_212
+    @buf_ram_313 = @buf_ram_213
+    @buf_ram_314 = @buf_ram_214
+    @buf_ram_315 = @buf_ram_215
+    @buf_ram_316 = @buf_ram_216
+    @buf_ram_317 = @buf_ram_217
+    @buf_ram_318 = @buf_ram_218
+    @buf_ram_319 = @buf_ram_219
+    @buf_ram_320 = @buf_ram_220
+    @buf_ram_321 = @buf_ram_221
+def shift4_13():
+    @buf_ram_335 = 1
+    @buf_ram_337 = @buf_ram_237
+    @buf_ram_338 = @buf_ram_238
+    @buf_ram_339 = @buf_ram_239
+    @buf_ram_340 = @buf_ram_240
+    @buf_ram_341 = @buf_ram_241
+    @buf_ram_342 = @buf_ram_242
+    @buf_ram_343 = @buf_ram_243
+    @buf_ram_344 = @buf_ram_244
+    @buf_ram_345 = @buf_ram_245
+    @buf_ram_346 = @buf_ram_246
+def shift4_14():
+    @buf_ram_360 = 1
+    @buf_ram_362 = @buf_ram_262
+    @buf_ram_363 = @buf_ram_263
+    @buf_ram_364 = @buf_ram_264
+    @buf_ram_365 = @buf_ram_265
+    @buf_ram_366 = @buf_ram_266
+    @buf_ram_367 = @buf_ram_267
+    @buf_ram_368 = @buf_ram_268
+    @buf_ram_369 = @buf_ram_269
+    @buf_ram_370 = @buf_ram_270
+    @buf_ram_371 = @buf_ram_271
+def shift4_15():
+    @buf_ram_385 = 1
+    @buf_ram_387 = @buf_ram_287
+    @buf_ram_388 = @buf_ram_288
+    @buf_ram_389 = @buf_ram_289
+    @buf_ram_390 = @buf_ram_290
+    @buf_ram_391 = @buf_ram_291
+    @buf_ram_392 = @buf_ram_292
+    @buf_ram_393 = @buf_ram_293
+    @buf_ram_394 = @buf_ram_294
+    @buf_ram_395 = @buf_ram_295
+    @buf_ram_396 = @buf_ram_296
+def shift4_16():
+    @buf_ram_410 = 1
+    @buf_ram_412 = @buf_ram_312
+    @buf_ram_413 = @buf_ram_313
+    @buf_ram_414 = @buf_ram_314
+    @buf_ram_415 = @buf_ram_315
+    @buf_ram_416 = @buf_ram_316
+    @buf_ram_417 = @buf_ram_317
+    @buf_ram_418 = @buf_ram_318
+    @buf_ram_419 = @buf_ram_319
+    @buf_ram_420 = @buf_ram_320
+    @buf_ram_421 = @buf_ram_321
+def shift4_17():
+    @buf_ram_435 = 1
+    @buf_ram_437 = @buf_ram_337
+    @buf_ram_438 = @buf_ram_338
+    @buf_ram_439 = @buf_ram_339
+    @buf_ram_440 = @buf_ram_340
+    @buf_ram_441 = @buf_ram_341
+    @buf_ram_442 = @buf_ram_342
+    @buf_ram_443 = @buf_ram_343
+    @buf_ram_444 = @buf_ram_344
+    @buf_ram_445 = @buf_ram_345
+    @buf_ram_446 = @buf_ram_346
+def shift4_18():
+    @buf_ram_460 = 1
+    @buf_ram_462 = @buf_ram_362
+    @buf_ram_463 = @buf_ram_363
+    @buf_ram_464 = @buf_ram_364
+    @buf_ram_465 = @buf_ram_365
+    @buf_ram_466 = @buf_ram_366
+    @buf_ram_467 = @buf_ram_367
+    @buf_ram_468 = @buf_ram_368
+    @buf_ram_469 = @buf_ram_369
+    @buf_ram_470 = @buf_ram_370
+    @buf_ram_471 = @buf_ram_371
+def check_0():
+    result = @buf_ram_12+@buf_ram_13+@buf_ram_14+@buf_ram_15+@buf_ram_16+@buf_ram_17+@buf_ram_18+@buf_ram_19+@buf_ram_20+@buf_ram_21
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_1():
+    result = @buf_ram_37+@buf_ram_38+@buf_ram_39+@buf_ram_40+@buf_ram_41+@buf_ram_42+@buf_ram_43+@buf_ram_44+@buf_ram_45+@buf_ram_46
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_2():
+    result = @buf_ram_62+@buf_ram_63+@buf_ram_64+@buf_ram_65+@buf_ram_66+@buf_ram_67+@buf_ram_68+@buf_ram_69+@buf_ram_70+@buf_ram_71
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_3():
+    result = @buf_ram_87+@buf_ram_88+@buf_ram_89+@buf_ram_90+@buf_ram_91+@buf_ram_92+@buf_ram_93+@buf_ram_94+@buf_ram_95+@buf_ram_96
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_4():
+    result = @buf_ram_112+@buf_ram_113+@buf_ram_114+@buf_ram_115+@buf_ram_116+@buf_ram_117+@buf_ram_118+@buf_ram_119+@buf_ram_120+@buf_ram_121
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_5():
+    result = @buf_ram_137+@buf_ram_138+@buf_ram_139+@buf_ram_140+@buf_ram_141+@buf_ram_142+@buf_ram_143+@buf_ram_144+@buf_ram_145+@buf_ram_146
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_6():
+    result = @buf_ram_162+@buf_ram_163+@buf_ram_164+@buf_ram_165+@buf_ram_166+@buf_ram_167+@buf_ram_168+@buf_ram_169+@buf_ram_170+@buf_ram_171
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_7():
+    result = @buf_ram_187+@buf_ram_188+@buf_ram_189+@buf_ram_190+@buf_ram_191+@buf_ram_192+@buf_ram_193+@buf_ram_194+@buf_ram_195+@buf_ram_196
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_8():
+    result = @buf_ram_212+@buf_ram_213+@buf_ram_214+@buf_ram_215+@buf_ram_216+@buf_ram_217+@buf_ram_218+@buf_ram_219+@buf_ram_220+@buf_ram_221
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_9():
+    result = @buf_ram_237+@buf_ram_238+@buf_ram_239+@buf_ram_240+@buf_ram_241+@buf_ram_242+@buf_ram_243+@buf_ram_244+@buf_ram_245+@buf_ram_246
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_10():
+    result = @buf_ram_262+@buf_ram_263+@buf_ram_264+@buf_ram_265+@buf_ram_266+@buf_ram_267+@buf_ram_268+@buf_ram_269+@buf_ram_270+@buf_ram_271
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_11():
+    result = @buf_ram_287+@buf_ram_288+@buf_ram_289+@buf_ram_290+@buf_ram_291+@buf_ram_292+@buf_ram_293+@buf_ram_294+@buf_ram_295+@buf_ram_296
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_12():
+    result = @buf_ram_312+@buf_ram_313+@buf_ram_314+@buf_ram_315+@buf_ram_316+@buf_ram_317+@buf_ram_318+@buf_ram_319+@buf_ram_320+@buf_ram_321
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_13():
+    result = @buf_ram_337+@buf_ram_338+@buf_ram_339+@buf_ram_340+@buf_ram_341+@buf_ram_342+@buf_ram_343+@buf_ram_344+@buf_ram_345+@buf_ram_346
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_14():
+    result = @buf_ram_362+@buf_ram_363+@buf_ram_364+@buf_ram_365+@buf_ram_366+@buf_ram_367+@buf_ram_368+@buf_ram_369+@buf_ram_370+@buf_ram_371
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_15():
+    result = @buf_ram_387+@buf_ram_388+@buf_ram_389+@buf_ram_390+@buf_ram_391+@buf_ram_392+@buf_ram_393+@buf_ram_394+@buf_ram_395+@buf_ram_396
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_16():
+    result = @buf_ram_412+@buf_ram_413+@buf_ram_414+@buf_ram_415+@buf_ram_416+@buf_ram_417+@buf_ram_418+@buf_ram_419+@buf_ram_420+@buf_ram_421
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_17():
+    result = @buf_ram_437+@buf_ram_438+@buf_ram_439+@buf_ram_440+@buf_ram_441+@buf_ram_442+@buf_ram_443+@buf_ram_444+@buf_ram_445+@buf_ram_446
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_18():
+    result = @buf_ram_462+@buf_ram_463+@buf_ram_464+@buf_ram_465+@buf_ram_466+@buf_ram_467+@buf_ram_468+@buf_ram_469+@buf_ram_470+@buf_ram_471
+    if ( result == 180 ):
+        return 1
+    else:
+        return 0
+def check_shift():
+    lines = 0
+    result = check_18()
+    lines = lines + result
+    result = check_17()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_18()
+    result = check_16()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_17()
+            else:
+                if ( lines == 2 ):
+                    shift2_18()
+    result = check_15()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_16()
+            else:
+                if ( lines == 2 ):
+                    shift2_17()
+                else:
+                    if ( lines == 3 ):
+                        shift3_18()
+    result = check_14()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_15()
+            else:
+                if ( lines == 2 ):
+                    shift2_16()
+                else:
+                    if ( lines == 3 ):
+                        shift3_17()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_18()
+    result = check_13()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_14()
+            else:
+                if ( lines == 2 ):
+                    shift2_15()
+                else:
+                    if ( lines == 3 ):
+                        shift3_16()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_17()
+    result = check_12()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_13()
+            else:
+                if ( lines == 2 ):
+                    shift2_14()
+                else:
+                    if ( lines == 3 ):
+                        shift3_15()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_16()
+    result = check_11()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_12()
+            else:
+                if ( lines == 2 ):
+                    shift2_13()
+                else:
+                    if ( lines == 3 ):
+                        shift3_14()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_15()
+    result = check_10()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_11()
+            else:
+                if ( lines == 2 ):
+                    shift2_12()
+                else:
+                    if ( lines == 3 ):
+                        shift3_13()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_14()
+    result = check_9()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_10()
+            else:
+                if ( lines == 2 ):
+                    shift2_11()
+                else:
+                    if ( lines == 3 ):
+                        shift3_12()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_13()
+    result = check_8()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_9()
+            else:
+                if ( lines == 2 ):
+                    shift2_10()
+                else:
+                    if ( lines == 3 ):
+                        shift3_11()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_12()
+    result = check_7()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_8()
+            else:
+                if ( lines == 2 ):
+                    shift2_9()
+                else:
+                    if ( lines == 3 ):
+                        shift3_10()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_11()
+    result = check_6()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_7()
+            else:
+                if ( lines == 2 ):
+                    shift2_8()
+                else:
+                    if ( lines == 3 ):
+                        shift3_9()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_10()
+    result = check_5()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_6()
+            else:
+                if ( lines == 2 ):
+                    shift2_7()
+                else:
+                    if ( lines == 3 ):
+                        shift3_8()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_9()
+    result = check_4()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_5()
+            else:
+                if ( lines == 2 ):
+                    shift2_6()
+                else:
+                    if ( lines == 3 ):
+                        shift3_7()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_8()
+    result = check_3()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_4()
+            else:
+                if ( lines == 2 ):
+                    shift2_5()
+                else:
+                    if ( lines == 3 ):
+                        shift3_6()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_7()
+    result = check_2()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_3()
+            else:
+                if ( lines == 2 ):
+                    shift2_4()
+                else:
+                    if ( lines == 3 ):
+                        shift3_5()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_6()
+    result = check_1()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_2()
+            else:
+                if ( lines == 2 ):
+                    shift2_3()
+                else:
+                    if ( lines == 3 ):
+                        shift3_4()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_5()
+    result = check_0()
+    lines = lines + result
+    if ( lines > 0 ):
+        if ( result == 0 ):
+            if ( lines == 1 ):
+                shift1_1()
+            else:
+                if ( lines == 2 ):
+                    shift2_2()
+                else:
+                    if ( lines == 3 ):
+                        shift3_3()
+                    else:
+                        if ( lines == 4 ):
+                            shift4_4()
+    if ( lines > 0 ):
+        if ( lines == 1 ):
+            shift1_0()
+        else:
+            if ( lines == 2 ):
+                shift2_0()
+                shift2_1()
+            else:
+                if ( lines == 3 ):
+                    shift3_0()
+                    shift3_1()
+                    shift3_2()
+                else:
+                    if ( lines == 4 ):
+                        shift4_0()
+                        shift4_1()
+                        shift4_2()
+                        shift4_3()
+    return lines
+
+def fill_line(aa):
+    i = 0
+    while:
+        buf[i] = aa
+        i = i + 1
+        if ( i == 24 ):
+            break
+
+def delay():
+
+    j = 0
+    while:
+        j = j + 1
+        if ( j == 5 ):
+            break
+        i = 0
+        while:
+            i = i + 1
+            if ( i == 100 ):
+                break
+
+def debug_print(val):
+    big_clear()
+    print_int(val, 0, 0)
+    big_display()
+
+
+def clear():
+    # fill in the start to initialze all ram
+    i = 0
+    while:
+        ram[i] = 'aaI'
+        i = i + 1
+        if ( i == @__script__disp_start ):
+            break
+    row = 0
+    ram_off = @__script__disp_start
+    while:
+
+        ram[ram_off] = 1
+
+        col = 0
+        while:
+            ram[ram_off + col+1] = 'aaI'
+
+            col = col + 1
+            if ( col == @__script__width ):
+                break
+
+
+        ram_off = ram_off + @__script__width + 1
+
+        row = row + 1
+        if ( row == @__script__height  ):
+            break
+    # fill this in to initialize all ram
+    while:
+        ram[ram_off] = 'aaI'
+        if ( ram_off == @__script__max_int ):
+            break
+        ram_off = ram_off + 1
+
+
+def show_score(score1, score2):
+    big_clear()
+    print_int(score1, 0, 2)
+    @buf_ram_360 = 1
+    @buf_ram_375 = @buf_big0_0
+    @buf_ram_376 = @buf_big0_1
+    @buf_ram_377 = @buf_big0_2
+    @buf_ram_378 = @buf_big0_3
+    @buf_ram_379 = @buf_big0_4
+    @buf_ram_380 = @buf_big0_5
+    @buf_ram_381 = @buf_big0_6
+    @buf_ram_382 = @buf_big0_7
+    @buf_ram_385 = 1
+    @buf_ram_400 = @buf_big1_0
+    @buf_ram_401 = @buf_big1_1
+    @buf_ram_402 = @buf_big1_2
+    @buf_ram_403 = @buf_big1_3
+    @buf_ram_404 = @buf_big1_4
+    @buf_ram_405 = @buf_big1_5
+    @buf_ram_406 = @buf_big1_6
+    @buf_ram_407 = @buf_big1_7
+    @buf_ram_410 = 1
+    @buf_ram_425 = @buf_big2_0
+    @buf_ram_426 = @buf_big2_1
+    @buf_ram_427 = @buf_big2_2
+    @buf_ram_428 = @buf_big2_3
+    @buf_ram_429 = @buf_big2_4
+    @buf_ram_430 = @buf_big2_5
+    @buf_ram_431 = @buf_big2_6
+    @buf_ram_432 = @buf_big2_7
+    @buf_ram_435 = 1
+    @buf_ram_450 = @buf_big3_0
+    @buf_ram_451 = @buf_big3_1
+    @buf_ram_452 = @buf_big3_2
+    @buf_ram_453 = @buf_big3_3
+    @buf_ram_454 = @buf_big3_4
+    @buf_ram_455 = @buf_big3_5
+    @buf_ram_456 = @buf_big3_6
+    @buf_ram_457 = @buf_big3_7
+    @buf_ram_460 = 1
+    @buf_ram_475 = @buf_big4_0
+    @buf_ram_476 = @buf_big4_1
+    @buf_ram_477 = @buf_big4_2
+    @buf_ram_478 = @buf_big4_3
+    @buf_ram_479 = @buf_big4_4
+    @buf_ram_480 = @buf_big4_5
+    @buf_ram_481 = @buf_big4_6
+    @buf_ram_482 = @buf_big4_7
+    if ( score2 == 0 ):
+        return
+    big_clear()
+    print_int(score2, 0, 0)
+    @buf_ram_210 = 1
+    @buf_ram_225 = @buf_big0_0
+    @buf_ram_226 = @buf_big0_1
+    @buf_ram_227 = @buf_big0_2
+    @buf_ram_228 = @buf_big0_3
+    @buf_ram_229 = @buf_big0_4
+    @buf_ram_230 = @buf_big0_5
+    @buf_ram_231 = @buf_big0_6
+    @buf_ram_232 = @buf_big0_7
+    @buf_ram_235 = 1
+    @buf_ram_250 = @buf_big1_0
+    @buf_ram_251 = @buf_big1_1
+    @buf_ram_252 = @buf_big1_2
+    @buf_ram_253 = @buf_big1_3
+    @buf_ram_254 = @buf_big1_4
+    @buf_ram_255 = @buf_big1_5
+    @buf_ram_256 = @buf_big1_6
+    @buf_ram_257 = @buf_big1_7
+    @buf_ram_260 = 1
+    @buf_ram_275 = @buf_big2_0
+    @buf_ram_276 = @buf_big2_1
+    @buf_ram_277 = @buf_big2_2
+    @buf_ram_278 = @buf_big2_3
+    @buf_ram_279 = @buf_big2_4
+    @buf_ram_280 = @buf_big2_5
+    @buf_ram_281 = @buf_big2_6
+    @buf_ram_282 = @buf_big2_7
+    @buf_ram_285 = 1
+    @buf_ram_300 = @buf_big3_0
+    @buf_ram_301 = @buf_big3_1
+    @buf_ram_302 = @buf_big3_2
+    @buf_ram_303 = @buf_big3_3
+    @buf_ram_304 = @buf_big3_4
+    @buf_ram_305 = @buf_big3_5
+    @buf_ram_306 = @buf_big3_6
+    @buf_ram_307 = @buf_big3_7
+    @buf_ram_310 = 1
+    @buf_ram_325 = @buf_big4_0
+    @buf_ram_326 = @buf_big4_1
+    @buf_ram_327 = @buf_big4_2
+    @buf_ram_328 = @buf_big4_3
+    @buf_ram_329 = @buf_big4_4
+    @buf_ram_330 = @buf_big4_5
+    @buf_ram_331 = @buf_big4_6
+    @buf_ram_332 = @buf_big4_7
+
+
+
+def row_start(row):
+    return @__script__disp_start + row * @__script__width_p1
+
+
+
+# debug_print(0)
+
+clear()
+
+keyinput()
+
+key_left = keybuf[0]
+key_up = keybuf[1]
+key_right = keybuf[2]
+key_down = keybuf[3]
+key_rev = keybuf[4]
+
+# draw the board
+
+height_m1 = height - 1
+
+row = 0
+ram_off = disp_start
+while:
+    ram[ram_off] = 1
+    ram[ram_off+1] = 'aaV'
+    ram[ram_off+12] = 'aaY'
+
+    ram_off = ram_off + width_p1
+
+    row = row + 1
+    if ( row == height_m1 ):
+        break
+
+
+ram[ram_off] = 1
+i = 0
+while:
+    ram[ram_off+i+1] = 'aaW'
+    i = i + 1
+    if ( i == 12 ):
+        break
+
+# ram_off = ram_off - 25
+
+# ram[ram_off] = 1
+# i = 0
+# while:
+#     ram[ram_off+i+1] = 'aaW'
+#     i = i + 1
+#     if ( i == 12 ):
+#         break
+
+# ram_off = ram_off - 50
+
+# ram[ram_off] = 1
+# i = 0
+# while:
+#     ram[ram_off+i+1] = 'aaW'
+#     i = i + 1
+#     if ( i == 12 ):
+#         break
+
+# ram_off = ram_off - 50
+
+# ram[ram_off] = 1
+# i = 0
+# while:
+#     ram[ram_off+i+1] = 'aaW'
+#     i = i + 1
+#     if ( i == 12 ):
+#         break
+
+def get_random_piece():
+    while:
+        a = rand()
+        a_div_9 = a/9
+        if ( a_div_9 < 7 ):
+            return a_div_9 * 4
+
+# display()
+
+x = 16
+y = 0
+piece = get_random_piece()
+
+score1 = 0
+score2 = 0
+
+counter = 0
+running = 1
+
+show_score(score1, score2)
+
+while:
+    next_x = x
+    next_y = y
+    next_piece = piece
+    movement = 0
+    if ( counter == 2 ):
+        counter = 0
+        next_y = y + 1
+        movement = 1
+    else:
+        counter = counter + 1
+
+    keyinput()
+    # debug_print(keybuf[0])
+    # debug_print(keybuf[1])
+    # debug_print(keybuf[2])
+    # debug_print(keybuf[3])
+    # debug_print(keybuf[4])
+    if ( movement == 0 ):
+        if ( keybuf[3] > key_down ):
+            key_down = key_down + 1
+            next_y = y + 1
+            counter = 0
+            movement = 1
+
+    if ( movement == 0 ):
+        if ( keybuf[0] > key_left ):
+            key_left = key_left + 1
+            next_x = x - 1
+            movement = 1
+
+    if ( movement == 0 ):
+        if ( keybuf[2] > key_right):
+            key_right = key_right + 1
+            next_x = x + 1
+            movement = 1
+
+    if ( movement == 0 ):
+        if ( keybuf[1] > key_up):
+            key_up = key_up + 1
+            if ( piece - (piece/4)*4 == 3 ):
+                next_piece = piece - 3
+            else:
+                next_piece = piece + 1
+            movement = 1
+
+    if ( movement == 0 ):
+        if ( keybuf[4] > key_rev):
+            key_rev = key_rev + 1
+            if ( piece - (piece/4)*4 == 0 ):
+                next_piece = piece + 3
+            else:
+                next_piece = piece - 1
+            movement = 1
+
+
+
+    if ( movement == 1 ):
+        movement = 0
+
+        check_result = check_shape(next_x, next_y, next_piece)
+
+        while:
+            if ( check_result == 'aaV' ):
+                pass
+            else:
+                break
+            next_x = next_x + 1
+            check_result = check_shape(next_x, next_y, next_piece)
+
+        while:
+            if ( check_result == 'aaY' ):
+                pass
+            else:
+                break
+            next_x = next_x - 1
+            check_result = check_shape(next_x, next_y, next_piece)
+
+        if ( check_result == 'aaW' ):
+            if ( y == next_y ):
+                pass
+            else:
+                # process piece setting
+
+                write_shape(x, y, 'aaW', piece)
+
+                lines = check_shift()
+
+                if ( lines > 0 ):
+                    if ( lines == 1 ):
+                        score1 = score1 + 1
+                    if ( lines == 2 ):
+                        score1 = score1 + 3
+                    if ( lines == 3 ):
+                        score1 = score1 + 9
+                    if ( lines == 4 ):
+                        score1 = score1 + 36
+
+                    if ( score1 >= 100 ):
+                        score2 = score2 + 1
+                        score1 = score1 - 100
+
+                    show_score(score1, score2)
+
+                next_x = 16
+                next_y = 0
+                next_piece = get_random_piece()
+                write_old = 1
+                movement = 1
+                if ( check_shape(next_x, next_y, next_piece) == 'aaW' ):
+                    running = 0
+
+        else:
+            movement = 1
+
+
+
+    if ( movement == 1 ):
+        write_shape(next_x, next_y, 'aaW', next_piece)
+
+        display()
+
+        write_shape(next_x, next_y, 'aaI', next_piece)
+        x = next_x
+        y = next_y
+        piece = next_piece
+    else:
+        write_shape(x, y, 'aaW', piece)
+        display()
+        write_shape(x, y, 'aaI', piece)
+        pass
+
+
+    if ( running == 0 ):
+        break
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
