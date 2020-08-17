@@ -2,6 +2,8 @@
 import sys,tty,termios
 import os
 
+print("Press x to quit")
+
 letters = sys.argv[1]
 
 letters = letters.replace("<left>", "D").replace("<up>", "A").replace("<down>", "B").replace("<right>", "C")
@@ -39,7 +41,7 @@ while True:
         buf = [key]
         
 
-    if ( buf[0]  == "X" ):
+    if ( buf[0]  == "x" ):
         break
 
     key = buf.pop()
